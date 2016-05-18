@@ -17,9 +17,9 @@
 
     <properties>
 
-        <hadoop.version>2.6.0-CDH5.4.0</hadoop.version>
-        <hive.version>1.1.0-CDH5.4.0</hive.version>
-        <sqoop.version>1.4.5-cdh5.4.0</sqoop.version>
+        <hadoop.version>2.6.0-CDH5.5.2</hadoop.version>
+        <hive.version>1.1.0-CDH5.5.2</hive.version>
+        <sqoop.version>1.4.6-cdh5.5.2</sqoop.version>
 
         <!--
         <hadoop.version>2.5.0-CDH5.2.4</hadoop.version>
@@ -27,7 +27,7 @@
         -->
 
         <!--
-        <cdh.version>4.5.0</cdh.version>
+        <cdh.version>4.7.0</cdh.version>
         <hadoop.version>2.0.0-CDH${cdh.version}</hadoop.version>
         <hive.version>0.10.0-CDH${cdh.version}</hive.version>
         -->
@@ -88,6 +88,15 @@
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.5.1</version>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
