@@ -24,6 +24,7 @@ public class DecimalTypeSerde {
     campaign.put("currencyCost", new BigDecimal(101.11).setScale(2, BigDecimal.ROUND_CEILING));
 
     File file = new File("/tmp/campaign.avro");
+    file.deleteOnExit();
     GenericDatumWriter<GenericRecord> datumWriter = new GenericDatumWriter<GenericRecord>(schema);
     datumWriter.getData().addLogicalTypeConversion(new Conversions.DecimalConversion());
     DataFileWriter<GenericRecord> dataFileWriter = new DataFileWriter<GenericRecord>(datumWriter);
