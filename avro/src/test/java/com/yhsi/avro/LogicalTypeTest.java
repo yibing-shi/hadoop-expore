@@ -1,5 +1,6 @@
 package com.yhsi.avro;
 
+import com.yshi.avro.TestRecord;
 import org.apache.avro.Schema;
 import org.apache.avro.file.DataFileWriter;
 import org.apache.avro.generic.GenericDatumWriter;

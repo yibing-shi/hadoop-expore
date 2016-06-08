@@ -1,0 +1,14 @@
+@namespace("com.yshi.avro")
+protocol YibingProtocol{
+    record TestRecord {
+        string recordId;
+        long longField = -1;
+        int intField = 1;
+        @logicalType("decimal") @precision(7) @scale(2) bytes decimalType = "\u0000000";
+    }
+    enum Status {
+        OK, FAILED
+    }
+
+    Status send (TestRecord request);
+}

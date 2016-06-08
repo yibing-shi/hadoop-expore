@@ -10,12 +10,13 @@ import org.apache.avro.specific.SpecificData;
 @SuppressWarnings("all")
 @org.apache.avro.specific.AvroGenerated
 public class TestRecord extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = 5517602200038987249L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"TestRecord\",\"namespace\":\"com.yshi.avro\",\"fields\":[{\"name\":\"recordId\",\"type\":\"string\"},{\"name\":\"longField\",\"type\":\"int\",\"default\":1},{\"name\":\"decimalField\",\"type\":{\"type\":\"bytes\",\"logicalType\":\"decimal\",\"precision\":7,\"scale\":2},\"default\":\"\\u0000000\"}]}");
+  private static final long serialVersionUID = -7704588679580531722L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"TestRecord\",\"namespace\":\"com.yshi.avro\",\"fields\":[{\"name\":\"recordId\",\"type\":\"string\"},{\"name\":\"longField\",\"type\":\"long\",\"default\":-1},{\"name\":\"intField\",\"type\":\"int\",\"default\":1},{\"name\":\"decimalType\",\"type\":{\"type\":\"bytes\",\"logicalType\":\"decimal\",\"precision\":7,\"scale\":2},\"default\":\"\\u0000000\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
   @Deprecated public java.lang.CharSequence recordId;
-  @Deprecated public int longField;
-  @Deprecated public java.math.BigDecimal decimalField;
+  @Deprecated public long longField;
+  @Deprecated public int intField;
+  @Deprecated public java.math.BigDecimal decimalType;
 
   /**
    * Default constructor.  Note that this does not initialize fields
@@ -28,12 +29,14 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
    * All-args constructor.
    * @param recordId The new value for recordId
    * @param longField The new value for longField
-   * @param decimalField The new value for decimalField
+   * @param intField The new value for intField
+   * @param decimalType The new value for decimalType
    */
-  public TestRecord(java.lang.CharSequence recordId, java.lang.Integer longField, java.math.BigDecimal decimalField) {
+  public TestRecord(java.lang.CharSequence recordId, java.lang.Long longField, java.lang.Integer intField, java.math.BigDecimal decimalType) {
     this.recordId = recordId;
     this.longField = longField;
-    this.decimalField = decimalField;
+    this.intField = intField;
+    this.decimalType = decimalType;
   }
 
   public org.apache.avro.Schema getSchema() { return SCHEMA$; }
@@ -42,7 +45,8 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
     switch (field$) {
     case 0: return recordId;
     case 1: return longField;
-    case 2: return decimalField;
+    case 2: return intField;
+    case 3: return decimalType;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -54,6 +58,7 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
 
   private final org.apache.avro.Conversion<?>[] conversions =
       new org.apache.avro.Conversion<?>[] {
+      null,
       null,
       null,
       DECIMAL_CONVERSION,
@@ -70,8 +75,9 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
   public void put(int field$, java.lang.Object value$) {
     switch (field$) {
     case 0: recordId = (java.lang.CharSequence)value$; break;
-    case 1: longField = (java.lang.Integer)value$; break;
-    case 2: decimalField = (java.math.BigDecimal)value$; break;
+    case 1: longField = (java.lang.Long)value$; break;
+    case 2: intField = (java.lang.Integer)value$; break;
+    case 3: decimalType = (java.math.BigDecimal)value$; break;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -96,7 +102,7 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
    * Gets the value of the 'longField' field.
    * @return The value of the 'longField' field.
    */
-  public java.lang.Integer getLongField() {
+  public java.lang.Long getLongField() {
     return longField;
   }
 
@@ -104,24 +110,40 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
    * Sets the value of the 'longField' field.
    * @param value the value to set.
    */
-  public void setLongField(java.lang.Integer value) {
+  public void setLongField(java.lang.Long value) {
     this.longField = value;
   }
 
   /**
-   * Gets the value of the 'decimalField' field.
-   * @return The value of the 'decimalField' field.
+   * Gets the value of the 'intField' field.
+   * @return The value of the 'intField' field.
    */
-  public java.math.BigDecimal getDecimalField() {
-    return decimalField;
+  public java.lang.Integer getIntField() {
+    return intField;
   }
 
   /**
-   * Sets the value of the 'decimalField' field.
+   * Sets the value of the 'intField' field.
    * @param value the value to set.
    */
-  public void setDecimalField(java.math.BigDecimal value) {
-    this.decimalField = value;
+  public void setIntField(java.lang.Integer value) {
+    this.intField = value;
+  }
+
+  /**
+   * Gets the value of the 'decimalType' field.
+   * @return The value of the 'decimalType' field.
+   */
+  public java.math.BigDecimal getDecimalType() {
+    return decimalType;
+  }
+
+  /**
+   * Sets the value of the 'decimalType' field.
+   * @param value the value to set.
+   */
+  public void setDecimalType(java.math.BigDecimal value) {
+    this.decimalType = value;
   }
 
   /**
@@ -157,8 +179,9 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
     implements org.apache.avro.data.RecordBuilder<TestRecord> {
 
     private java.lang.CharSequence recordId;
-    private int longField;
-    private java.math.BigDecimal decimalField;
+    private long longField;
+    private int intField;
+    private java.math.BigDecimal decimalType;
 
     /** Creates a new Builder */
     private Builder() {
@@ -179,9 +202,13 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
         this.longField = data().deepCopy(fields()[1].schema(), other.longField);
         fieldSetFlags()[1] = true;
       }
-      if (isValidValue(fields()[2], other.decimalField)) {
-        this.decimalField = data().deepCopy(fields()[2].schema(), other.decimalField);
+      if (isValidValue(fields()[2], other.intField)) {
+        this.intField = data().deepCopy(fields()[2].schema(), other.intField);
         fieldSetFlags()[2] = true;
+      }
+      if (isValidValue(fields()[3], other.decimalType)) {
+        this.decimalType = data().deepCopy(fields()[3].schema(), other.decimalType);
+        fieldSetFlags()[3] = true;
       }
     }
 
@@ -199,9 +226,13 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
         this.longField = data().deepCopy(fields()[1].schema(), other.longField);
         fieldSetFlags()[1] = true;
       }
-      if (isValidValue(fields()[2], other.decimalField)) {
-        this.decimalField = data().deepCopy(fields()[2].schema(), other.decimalField);
+      if (isValidValue(fields()[2], other.intField)) {
+        this.intField = data().deepCopy(fields()[2].schema(), other.intField);
         fieldSetFlags()[2] = true;
+      }
+      if (isValidValue(fields()[3], other.decimalType)) {
+        this.decimalType = data().deepCopy(fields()[3].schema(), other.decimalType);
+        fieldSetFlags()[3] = true;
       }
     }
 
@@ -248,7 +279,7 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
       * Gets the value of the 'longField' field.
       * @return The value.
       */
-    public java.lang.Integer getLongField() {
+    public java.lang.Long getLongField() {
       return longField;
     }
 
@@ -257,7 +288,7 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
       * @param value The value of 'longField'.
       * @return This builder.
       */
-    public com.yshi.avro.TestRecord.Builder setLongField(int value) {
+    public com.yshi.avro.TestRecord.Builder setLongField(long value) {
       validate(fields()[1], value);
       this.longField = value;
       fieldSetFlags()[1] = true;
@@ -283,41 +314,79 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
     }
 
     /**
-      * Gets the value of the 'decimalField' field.
+      * Gets the value of the 'intField' field.
       * @return The value.
       */
-    public java.math.BigDecimal getDecimalField() {
-      return decimalField;
+    public java.lang.Integer getIntField() {
+      return intField;
     }
 
     /**
-      * Sets the value of the 'decimalField' field.
-      * @param value The value of 'decimalField'.
+      * Sets the value of the 'intField' field.
+      * @param value The value of 'intField'.
       * @return This builder.
       */
-    public com.yshi.avro.TestRecord.Builder setDecimalField(java.math.BigDecimal value) {
+    public com.yshi.avro.TestRecord.Builder setIntField(int value) {
       validate(fields()[2], value);
-      this.decimalField = value;
+      this.intField = value;
       fieldSetFlags()[2] = true;
       return this;
     }
 
     /**
-      * Checks whether the 'decimalField' field has been set.
-      * @return True if the 'decimalField' field has been set, false otherwise.
+      * Checks whether the 'intField' field has been set.
+      * @return True if the 'intField' field has been set, false otherwise.
       */
-    public boolean hasDecimalField() {
+    public boolean hasIntField() {
       return fieldSetFlags()[2];
     }
 
 
     /**
-      * Clears the value of the 'decimalField' field.
+      * Clears the value of the 'intField' field.
       * @return This builder.
       */
-    public com.yshi.avro.TestRecord.Builder clearDecimalField() {
-      decimalField = null;
+    public com.yshi.avro.TestRecord.Builder clearIntField() {
       fieldSetFlags()[2] = false;
+      return this;
+    }
+
+    /**
+      * Gets the value of the 'decimalType' field.
+      * @return The value.
+      */
+    public java.math.BigDecimal getDecimalType() {
+      return decimalType;
+    }
+
+    /**
+      * Sets the value of the 'decimalType' field.
+      * @param value The value of 'decimalType'.
+      * @return This builder.
+      */
+    public com.yshi.avro.TestRecord.Builder setDecimalType(java.math.BigDecimal value) {
+      validate(fields()[3], value);
+      this.decimalType = value;
+      fieldSetFlags()[3] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'decimalType' field has been set.
+      * @return True if the 'decimalType' field has been set, false otherwise.
+      */
+    public boolean hasDecimalType() {
+      return fieldSetFlags()[3];
+    }
+
+
+    /**
+      * Clears the value of the 'decimalType' field.
+      * @return This builder.
+      */
+    public com.yshi.avro.TestRecord.Builder clearDecimalType() {
+      decimalType = null;
+      fieldSetFlags()[3] = false;
       return this;
     }
 
@@ -326,8 +395,9 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
       try {
         TestRecord record = new TestRecord();
         record.recordId = fieldSetFlags()[0] ? this.recordId : (java.lang.CharSequence) defaultValue(fields()[0], record.getConversion(0));
-        record.longField = fieldSetFlags()[1] ? this.longField : (java.lang.Integer) defaultValue(fields()[1], record.getConversion(1));
-        record.decimalField = fieldSetFlags()[2] ? this.decimalField : (java.math.BigDecimal) defaultValue(fields()[2], record.getConversion(2));
+        record.longField = fieldSetFlags()[1] ? this.longField : (java.lang.Long) defaultValue(fields()[1], record.getConversion(1));
+        record.intField = fieldSetFlags()[2] ? this.intField : (java.lang.Integer) defaultValue(fields()[2], record.getConversion(2));
+        record.decimalType = fieldSetFlags()[3] ? this.decimalType : (java.math.BigDecimal) defaultValue(fields()[3], record.getConversion(3));
         return record;
       } catch (Exception e) {
         throw new org.apache.avro.AvroRuntimeException(e);

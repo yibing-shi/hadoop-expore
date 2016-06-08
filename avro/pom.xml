@@ -44,25 +44,42 @@
     <build>
         <plugins>
             <plugin>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>3.0.0</version>
+                <executions>
+                    <execution>
+                        <id>auto-clean</id>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>clean</goal>
+                        </goals>
+                        <configuration>
+                            <filesets>
+                                <fileset>
+                                    <directory>src/main/java/com/yshi/avro</directory>
+                                </fileset>
+                            </filesets>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <groupId>org.apache.avro</groupId>
                 <artifactId>avro-maven-plugin</artifactId>
                 <version>${avro.version}</version>
                 <executions>
                     <execution>
-                        <id>schemas</id>
+                        <id>protocol</id>
                         <phase>generate-sources</phase>
                         <goals>
-                            <goal>protocol</goal>
                             <goal>idl-protocol</goal>
                         </goals>
                         <configuration>
-                            <excludes>
-                                <exclude>**/mapred/tether/**</exclude>
-                            </excludes>
-                            <sourceDirectory>${project.basedir}/src/main/avro/</sourceDirectory>
-                            <outputDirectory>${project.basedir}/src/main/java/</outputDirectory>
-                            <testSourceDirectory>${project.basedir}/src/test/avro/</testSourceDirectory>
-                            <testOutputDirectory>${project.basedir}/src/test/java/</testOutputDirectory>
+                            <includes>*.idl</includes>
+                            <sourceDirectory>${project.basedir}/src/main/avro/idl</sourceDirectory>
+                            <outputDirectory>${project.basedir}/src/main/java</outputDirectory>
+                            <testSourceDirectory>${project.basedir}/src/test/avro/idl</testSourceDirectory>
+                            <testOutputDirectory>${project.basedir}/src/test/java</testOutputDirectory>
                         </configuration>
                     </execution>
                 </executions>

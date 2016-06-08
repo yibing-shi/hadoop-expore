@@ -8,7 +8,7 @@ package com.yshi.avro;
 @SuppressWarnings("all")
 @org.apache.avro.specific.AvroGenerated
 public interface YibingProtocol {
-  public static final org.apache.avro.Protocol PROTOCOL = org.apache.avro.Protocol.parse("{\"protocol\":\"YibingProtocol\",\"namespace\":\"com.yshi.avro\",\"types\":[{\"type\":\"record\",\"name\":\"TestRecord\",\"fields\":[{\"name\":\"recordId\",\"type\":\"string\"},{\"name\":\"longField\",\"type\":\"int\",\"default\":1},{\"name\":\"decimalField\",\"type\":{\"type\":\"bytes\",\"logicalType\":\"decimal\",\"precision\":7,\"scale\":2},\"default\":\"\\u0000000\"}]},{\"type\":\"enum\",\"name\":\"Status\",\"symbols\":[\"OK\",\"FAILED\"]}],\"messages\":{\"send\":{\"request\":[{\"name\":\"request\",\"type\":\"TestRecord\"}],\"response\":\"Status\"}}}");
+  public static final org.apache.avro.Protocol PROTOCOL = org.apache.avro.Protocol.parse("{\"protocol\":\"YibingProtocol\",\"namespace\":\"com.yshi.avro\",\"types\":[{\"type\":\"record\",\"name\":\"TestRecord\",\"fields\":[{\"name\":\"recordId\",\"type\":\"string\"},{\"name\":\"longField\",\"type\":\"long\",\"default\":-1},{\"name\":\"intField\",\"type\":\"int\",\"default\":1},{\"name\":\"decimalType\",\"type\":{\"type\":\"bytes\",\"logicalType\":\"decimal\",\"precision\":7,\"scale\":2},\"default\":\"\\u0000000\"}]},{\"type\":\"enum\",\"name\":\"Status\",\"symbols\":[\"OK\",\"FAILED\"]}],\"messages\":{\"send\":{\"request\":[{\"name\":\"request\",\"type\":\"TestRecord\"}],\"response\":\"Status\"}}}");
   /**
    */
   com.yshi.avro.Status send(com.yshi.avro.TestRecord request) throws org.apache.avro.AvroRemoteException;
