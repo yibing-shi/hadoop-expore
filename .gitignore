@@ -3,3 +3,5 @@ derby.log
 hadoop-explore.iml
 metastore_db/
 target/
+avro/*.iml
+hive/*.iml
