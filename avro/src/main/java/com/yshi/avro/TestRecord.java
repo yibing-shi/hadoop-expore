@@ -10,13 +10,14 @@ import org.apache.avro.specific.SpecificData;
 @SuppressWarnings("all")
 @org.apache.avro.specific.AvroGenerated
 public class TestRecord extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = -7704588679580531722L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"TestRecord\",\"namespace\":\"com.yshi.avro\",\"fields\":[{\"name\":\"recordId\",\"type\":\"string\"},{\"name\":\"longField\",\"type\":\"long\",\"default\":-1},{\"name\":\"intField\",\"type\":\"int\",\"default\":1},{\"name\":\"decimalType\",\"type\":{\"type\":\"bytes\",\"logicalType\":\"decimal\",\"precision\":7,\"scale\":2},\"default\":\"\\u0000000\"}]}");
+  private static final long serialVersionUID = -5739679765677279353L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"TestRecord\",\"namespace\":\"com.yshi.avro\",\"fields\":[{\"name\":\"recordId\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"longField\",\"type\":\"long\",\"default\":-1},{\"name\":\"intField\",\"type\":\"int\",\"default\":1},{\"name\":\"dateField\",\"type\":{\"type\":\"int\",\"logicalType\":\"date\"},\"default\":\"2016-01-01\"},{\"name\":\"decimalType\",\"type\":{\"type\":\"bytes\",\"logicalType\":\"decimal\",\"precision\":7,\"scale\":2},\"default\":\"\\u0000000\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
-  @Deprecated public java.lang.CharSequence recordId;
+  @Deprecated public java.lang.String recordId;
   @Deprecated public long longField;
   @Deprecated public int intField;
-  @Deprecated public java.math.BigDecimal decimalType;
+  @Deprecated public org.joda.time.LocalDate dateField;
+  @Deprecated public java.nio.ByteBuffer decimalType;
 
   /**
    * Default constructor.  Note that this does not initialize fields
@@ -30,12 +31,14 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
    * @param recordId The new value for recordId
    * @param longField The new value for longField
    * @param intField The new value for intField
+   * @param dateField The new value for dateField
    * @param decimalType The new value for decimalType
    */
-  public TestRecord(java.lang.CharSequence recordId, java.lang.Long longField, java.lang.Integer intField, java.math.BigDecimal decimalType) {
+  public TestRecord(java.lang.String recordId, java.lang.Long longField, java.lang.Integer intField, org.joda.time.LocalDate dateField, java.nio.ByteBuffer decimalType) {
     this.recordId = recordId;
     this.longField = longField;
     this.intField = intField;
+    this.dateField = dateField;
     this.decimalType = decimalType;
   }
 
@@ -46,7 +49,8 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
     case 0: return recordId;
     case 1: return longField;
     case 2: return intField;
-    case 3: return decimalType;
+    case 3: return dateField;
+    case 4: return decimalType;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -61,7 +65,8 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
       null,
       null,
       null,
-      DECIMAL_CONVERSION,
+      DATE_CONVERSION,
+      null,
       null
   };
 
@@ -74,10 +79,11 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
   @SuppressWarnings(value="unchecked")
   public void put(int field$, java.lang.Object value$) {
     switch (field$) {
-    case 0: recordId = (java.lang.CharSequence)value$; break;
+    case 0: recordId = (java.lang.String)value$; break;
     case 1: longField = (java.lang.Long)value$; break;
     case 2: intField = (java.lang.Integer)value$; break;
-    case 3: decimalType = (java.math.BigDecimal)value$; break;
+    case 3: dateField = (org.joda.time.LocalDate)value$; break;
+    case 4: decimalType = (java.nio.ByteBuffer)value$; break;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -86,7 +92,7 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
    * Gets the value of the 'recordId' field.
    * @return The value of the 'recordId' field.
    */
-  public java.lang.CharSequence getRecordId() {
+  public java.lang.String getRecordId() {
     return recordId;
   }
 
@@ -94,7 +100,7 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
    * Sets the value of the 'recordId' field.
    * @param value the value to set.
    */
-  public void setRecordId(java.lang.CharSequence value) {
+  public void setRecordId(java.lang.String value) {
     this.recordId = value;
   }
 
@@ -131,10 +137,26 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
   }
 
   /**
+   * Gets the value of the 'dateField' field.
+   * @return The value of the 'dateField' field.
+   */
+  public org.joda.time.LocalDate getDateField() {
+    return dateField;
+  }
+
+  /**
+   * Sets the value of the 'dateField' field.
+   * @param value the value to set.
+   */
+  public void setDateField(org.joda.time.LocalDate value) {
+    this.dateField = value;
+  }
+
+  /**
    * Gets the value of the 'decimalType' field.
    * @return The value of the 'decimalType' field.
    */
-  public java.math.BigDecimal getDecimalType() {
+  public java.nio.ByteBuffer getDecimalType() {
     return decimalType;
   }
 
@@ -142,7 +164,7 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
    * Sets the value of the 'decimalType' field.
    * @param value the value to set.
    */
-  public void setDecimalType(java.math.BigDecimal value) {
+  public void setDecimalType(java.nio.ByteBuffer value) {
     this.decimalType = value;
   }
 
@@ -178,10 +200,11 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
   public static class Builder extends org.apache.avro.specific.SpecificRecordBuilderBase<TestRecord>
     implements org.apache.avro.data.RecordBuilder<TestRecord> {
 
-    private java.lang.CharSequence recordId;
+    private java.lang.String recordId;
     private long longField;
     private int intField;
-    private java.math.BigDecimal decimalType;
+    private org.joda.time.LocalDate dateField;
+    private java.nio.ByteBuffer decimalType;
 
     /** Creates a new Builder */
     private Builder() {
@@ -206,9 +229,13 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
         this.intField = data().deepCopy(fields()[2].schema(), other.intField);
         fieldSetFlags()[2] = true;
       }
-      if (isValidValue(fields()[3], other.decimalType)) {
-        this.decimalType = data().deepCopy(fields()[3].schema(), other.decimalType);
+      if (isValidValue(fields()[3], other.dateField)) {
+        this.dateField = data().deepCopy(fields()[3].schema(), other.dateField);
         fieldSetFlags()[3] = true;
+      }
+      if (isValidValue(fields()[4], other.decimalType)) {
+        this.decimalType = data().deepCopy(fields()[4].schema(), other.decimalType);
+        fieldSetFlags()[4] = true;
       }
     }
 
@@ -230,9 +257,13 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
         this.intField = data().deepCopy(fields()[2].schema(), other.intField);
         fieldSetFlags()[2] = true;
       }
-      if (isValidValue(fields()[3], other.decimalType)) {
-        this.decimalType = data().deepCopy(fields()[3].schema(), other.decimalType);
+      if (isValidValue(fields()[3], other.dateField)) {
+        this.dateField = data().deepCopy(fields()[3].schema(), other.dateField);
         fieldSetFlags()[3] = true;
+      }
+      if (isValidValue(fields()[4], other.decimalType)) {
+        this.decimalType = data().deepCopy(fields()[4].schema(), other.decimalType);
+        fieldSetFlags()[4] = true;
       }
     }
 
@@ -240,7 +271,7 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
       * Gets the value of the 'recordId' field.
       * @return The value.
       */
-    public java.lang.CharSequence getRecordId() {
+    public java.lang.String getRecordId() {
       return recordId;
     }
 
@@ -249,7 +280,7 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
       * @param value The value of 'recordId'.
       * @return This builder.
       */
-    public com.yshi.avro.TestRecord.Builder setRecordId(java.lang.CharSequence value) {
+    public com.yshi.avro.TestRecord.Builder setRecordId(java.lang.String value) {
       validate(fields()[0], value);
       this.recordId = value;
       fieldSetFlags()[0] = true;
@@ -352,10 +383,48 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
     }
 
     /**
+      * Gets the value of the 'dateField' field.
+      * @return The value.
+      */
+    public org.joda.time.LocalDate getDateField() {
+      return dateField;
+    }
+
+    /**
+      * Sets the value of the 'dateField' field.
+      * @param value The value of 'dateField'.
+      * @return This builder.
+      */
+    public com.yshi.avro.TestRecord.Builder setDateField(org.joda.time.LocalDate value) {
+      validate(fields()[3], value);
+      this.dateField = value;
+      fieldSetFlags()[3] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'dateField' field has been set.
+      * @return True if the 'dateField' field has been set, false otherwise.
+      */
+    public boolean hasDateField() {
+      return fieldSetFlags()[3];
+    }
+
+
+    /**
+      * Clears the value of the 'dateField' field.
+      * @return This builder.
+      */
+    public com.yshi.avro.TestRecord.Builder clearDateField() {
+      fieldSetFlags()[3] = false;
+      return this;
+    }
+
+    /**
       * Gets the value of the 'decimalType' field.
       * @return The value.
       */
-    public java.math.BigDecimal getDecimalType() {
+    public java.nio.ByteBuffer getDecimalType() {
       return decimalType;
     }
 
@@ -364,10 +433,10 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
       * @param value The value of 'decimalType'.
       * @return This builder.
       */
-    public com.yshi.avro.TestRecord.Builder setDecimalType(java.math.BigDecimal value) {
-      validate(fields()[3], value);
+    public com.yshi.avro.TestRecord.Builder setDecimalType(java.nio.ByteBuffer value) {
+      validate(fields()[4], value);
       this.decimalType = value;
-      fieldSetFlags()[3] = true;
+      fieldSetFlags()[4] = true;
       return this;
     }
 
@@ -376,7 +445,7 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
       * @return True if the 'decimalType' field has been set, false otherwise.
       */
     public boolean hasDecimalType() {
-      return fieldSetFlags()[3];
+      return fieldSetFlags()[4];
     }
 
 
@@ -386,7 +455,7 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
       */
     public com.yshi.avro.TestRecord.Builder clearDecimalType() {
       decimalType = null;
-      fieldSetFlags()[3] = false;
+      fieldSetFlags()[4] = false;
       return this;
     }
 
@@ -394,10 +463,11 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
     public TestRecord build() {
       try {
         TestRecord record = new TestRecord();
-        record.recordId = fieldSetFlags()[0] ? this.recordId : (java.lang.CharSequence) defaultValue(fields()[0], record.getConversion(0));
+        record.recordId = fieldSetFlags()[0] ? this.recordId : (java.lang.String) defaultValue(fields()[0], record.getConversion(0));
         record.longField = fieldSetFlags()[1] ? this.longField : (java.lang.Long) defaultValue(fields()[1], record.getConversion(1));
         record.intField = fieldSetFlags()[2] ? this.intField : (java.lang.Integer) defaultValue(fields()[2], record.getConversion(2));
-        record.decimalType = fieldSetFlags()[3] ? this.decimalType : (java.math.BigDecimal) defaultValue(fields()[3], record.getConversion(3));
+        record.dateField = fieldSetFlags()[3] ? this.dateField : (org.joda.time.LocalDate) defaultValue(fields()[3], record.getConversion(3));
+        record.decimalType = fieldSetFlags()[4] ? this.decimalType : (java.nio.ByteBuffer) defaultValue(fields()[4], record.getConversion(4));
         return record;
       } catch (Exception e) {
         throw new org.apache.avro.AvroRuntimeException(e);

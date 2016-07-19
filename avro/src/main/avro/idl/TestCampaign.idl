@@ -4,6 +4,7 @@ protocol YibingProtocol{
         string recordId;
         long longField = -1;
         int intField = 1;
+        date dateField = "2016-01-01";
         @logicalType("decimal") @precision(7) @scale(2) bytes decimalType = "\u0000000";
     }
     enum Status {

@@ -1,0 +1,11 @@
+{
+    "type" : "record",
+    "name" : "data",
+    "namespace" : "my.example",
+    "fields" : [
+        {"name" : "domain", "type" : ["null", "string"], "default" : null},
+        {"name" : "ip", "type" : ["null", "string"], "default" : null},
+        {"name" : "port", "type" : ["null", "int"], "default" : null},
+        {"name" : "score", "type" : ["null", "int"], "default" : null}
+    ]
+}

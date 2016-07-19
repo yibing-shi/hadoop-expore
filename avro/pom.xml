@@ -80,6 +80,8 @@
                             <outputDirectory>${project.basedir}/src/main/java</outputDirectory>
                             <testSourceDirectory>${project.basedir}/src/test/avro/idl</testSourceDirectory>
                             <testOutputDirectory>${project.basedir}/src/test/java</testOutputDirectory>
+                            <enableDecimalLogicalType>false</enableDecimalLogicalType>
+                            <stringType>String</stringType>
                         </configuration>
                     </execution>
                 </executions>
