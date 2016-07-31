@@ -6,18 +6,46 @@
 package com.yshi.avro;
 
 import org.apache.avro.specific.SpecificData;
+import org.apache.avro.message.BinaryMessageEncoder;
+import org.apache.avro.message.BinaryMessageDecoder;
 
 @SuppressWarnings("all")
 @org.apache.avro.specific.AvroGenerated
 public class TestRecord extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = -5739679765677279353L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"TestRecord\",\"namespace\":\"com.yshi.avro\",\"fields\":[{\"name\":\"recordId\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"longField\",\"type\":\"long\",\"default\":-1},{\"name\":\"intField\",\"type\":\"int\",\"default\":1},{\"name\":\"dateField\",\"type\":{\"type\":\"int\",\"logicalType\":\"date\"},\"default\":\"2016-01-01\"},{\"name\":\"decimalType\",\"type\":{\"type\":\"bytes\",\"logicalType\":\"decimal\",\"precision\":7,\"scale\":2},\"default\":\"\\u0000000\"}]}");
+  private static final long serialVersionUID = -2296015181155631452L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"TestRecord\",\"namespace\":\"com.yshi.avro\",\"fields\":[{\"name\":\"recordId\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"boolField\",\"type\":\"boolean\",\"default\":true},{\"name\":\"longField\",\"type\":\"long\",\"default\":-1},{\"name\":\"intField\",\"type\":\"int\",\"default\":1},{\"name\":\"floatField\",\"type\":\"float\",\"default\":1.1},{\"name\":\"doubleField\",\"type\":\"double\",\"default\":2.2},{\"name\":\"bytesField\",\"type\":\"bytes\",\"default\":\"\\u0001\"},{\"name\":\"dateField\",\"type\":{\"type\":\"int\",\"logicalType\":\"date\"},\"default\":1451606400000},{\"name\":\"timeField\",\"type\":{\"type\":\"int\",\"logicalType\":\"time-millis\"},\"default\":1451606400000},{\"name\":\"tsField\",\"type\":{\"type\":\"long\",\"logicalType\":\"timestamp-millis\"},\"default\":1451606400000},{\"name\":\"decField\",\"type\":{\"type\":\"bytes\",\"logicalType\":\"decimal\",\"precision\":7,\"scale\":2},\"default\":\"09\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
+
+  private static SpecificData MODEL$ = new SpecificData();
+
+  private static final BinaryMessageEncoder<TestRecord> ENCODER =
+      new BinaryMessageEncoder<TestRecord>(MODEL$, SCHEMA$);
+
+  private static final BinaryMessageDecoder<TestRecord> DECODER =
+      new BinaryMessageDecoder<TestRecord>(MODEL$, SCHEMA$);
+
+  /** Serializes this TestRecord to a ByteBuffer. */
+  public java.nio.ByteBuffer toByteBuffer() throws java.io.IOException {
+    return ENCODER.encode(this);
+  }
+
+  /** Deserializes a TestRecord from a ByteBuffer. */
+  public static TestRecord fromByteBuffer(
+      java.nio.ByteBuffer b) throws java.io.IOException {
+    return DECODER.decode(b);
+  }
+
   @Deprecated public java.lang.String recordId;
+  @Deprecated public boolean boolField;
   @Deprecated public long longField;
   @Deprecated public int intField;
+  @Deprecated public float floatField;
+  @Deprecated public double doubleField;
+  @Deprecated public java.nio.ByteBuffer bytesField;
   @Deprecated public org.joda.time.LocalDate dateField;
-  @Deprecated public java.nio.ByteBuffer decimalType;
+  @Deprecated public org.joda.time.LocalTime timeField;
+  @Deprecated public org.joda.time.DateTime tsField;
+  @Deprecated public java.math.BigDecimal decField;
 
   /**
    * Default constructor.  Note that this does not initialize fields
@@ -29,17 +57,29 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
   /**
    * All-args constructor.
    * @param recordId The new value for recordId
+   * @param boolField The new value for boolField
    * @param longField The new value for longField
    * @param intField The new value for intField
+   * @param floatField The new value for floatField
+   * @param doubleField The new value for doubleField
+   * @param bytesField The new value for bytesField
    * @param dateField The new value for dateField
-   * @param decimalType The new value for decimalType
+   * @param timeField The new value for timeField
+   * @param tsField The new value for tsField
+   * @param decField The new value for decField
    */
-  public TestRecord(java.lang.String recordId, java.lang.Long longField, java.lang.Integer intField, org.joda.time.LocalDate dateField, java.nio.ByteBuffer decimalType) {
+  public TestRecord(java.lang.String recordId, java.lang.Boolean boolField, java.lang.Long longField, java.lang.Integer intField, java.lang.Float floatField, java.lang.Double doubleField, java.nio.ByteBuffer bytesField, org.joda.time.LocalDate dateField, org.joda.time.LocalTime timeField, org.joda.time.DateTime tsField, java.math.BigDecimal decField) {
     this.recordId = recordId;
+    this.boolField = boolField;
     this.longField = longField;
     this.intField = intField;
+    this.floatField = floatField;
+    this.doubleField = doubleField;
+    this.bytesField = bytesField;
     this.dateField = dateField;
-    this.decimalType = decimalType;
+    this.timeField = timeField;
+    this.tsField = tsField;
+    this.decField = decField;
   }
 
   public org.apache.avro.Schema getSchema() { return SCHEMA$; }
@@ -47,10 +87,16 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
   public java.lang.Object get(int field$) {
     switch (field$) {
     case 0: return recordId;
-    case 1: return longField;
-    case 2: return intField;
-    case 3: return dateField;
-    case 4: return decimalType;
+    case 1: return boolField;
+    case 2: return longField;
+    case 3: return intField;
+    case 4: return floatField;
+    case 5: return doubleField;
+    case 6: return bytesField;
+    case 7: return dateField;
+    case 8: return timeField;
+    case 9: return tsField;
+    case 10: return decField;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -65,8 +111,14 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
       null,
       null,
       null,
-      DATE_CONVERSION,
       null,
+      null,
+      null,
+      null,
+      DATE_CONVERSION,
+      TIME_CONVERSION,
+      TIMESTAMP_CONVERSION,
+      DECIMAL_CONVERSION,
       null
   };
 
@@ -80,10 +132,16 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
   public void put(int field$, java.lang.Object value$) {
     switch (field$) {
     case 0: recordId = (java.lang.String)value$; break;
-    case 1: longField = (java.lang.Long)value$; break;
-    case 2: intField = (java.lang.Integer)value$; break;
-    case 3: dateField = (org.joda.time.LocalDate)value$; break;
-    case 4: decimalType = (java.nio.ByteBuffer)value$; break;
+    case 1: boolField = (java.lang.Boolean)value$; break;
+    case 2: longField = (java.lang.Long)value$; break;
+    case 3: intField = (java.lang.Integer)value$; break;
+    case 4: floatField = (java.lang.Float)value$; break;
+    case 5: doubleField = (java.lang.Double)value$; break;
+    case 6: bytesField = (java.nio.ByteBuffer)value$; break;
+    case 7: dateField = (org.joda.time.LocalDate)value$; break;
+    case 8: timeField = (org.joda.time.LocalTime)value$; break;
+    case 9: tsField = (org.joda.time.DateTime)value$; break;
+    case 10: decField = (java.math.BigDecimal)value$; break;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -102,6 +160,22 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
    */
   public void setRecordId(java.lang.String value) {
     this.recordId = value;
+  }
+
+  /**
+   * Gets the value of the 'boolField' field.
+   * @return The value of the 'boolField' field.
+   */
+  public java.lang.Boolean getBoolField() {
+    return boolField;
+  }
+
+  /**
+   * Sets the value of the 'boolField' field.
+   * @param value the value to set.
+   */
+  public void setBoolField(java.lang.Boolean value) {
+    this.boolField = value;
   }
 
   /**
@@ -137,6 +211,54 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
   }
 
   /**
+   * Gets the value of the 'floatField' field.
+   * @return The value of the 'floatField' field.
+   */
+  public java.lang.Float getFloatField() {
+    return floatField;
+  }
+
+  /**
+   * Sets the value of the 'floatField' field.
+   * @param value the value to set.
+   */
+  public void setFloatField(java.lang.Float value) {
+    this.floatField = value;
+  }
+
+  /**
+   * Gets the value of the 'doubleField' field.
+   * @return The value of the 'doubleField' field.
+   */
+  public java.lang.Double getDoubleField() {
+    return doubleField;
+  }
+
+  /**
+   * Sets the value of the 'doubleField' field.
+   * @param value the value to set.
+   */
+  public void setDoubleField(java.lang.Double value) {
+    this.doubleField = value;
+  }
+
+  /**
+   * Gets the value of the 'bytesField' field.
+   * @return The value of the 'bytesField' field.
+   */
+  public java.nio.ByteBuffer getBytesField() {
+    return bytesField;
+  }
+
+  /**
+   * Sets the value of the 'bytesField' field.
+   * @param value the value to set.
+   */
+  public void setBytesField(java.nio.ByteBuffer value) {
+    this.bytesField = value;
+  }
+
+  /**
    * Gets the value of the 'dateField' field.
    * @return The value of the 'dateField' field.
    */
@@ -153,19 +275,51 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
   }
 
   /**
-   * Gets the value of the 'decimalType' field.
-   * @return The value of the 'decimalType' field.
+   * Gets the value of the 'timeField' field.
+   * @return The value of the 'timeField' field.
    */
-  public java.nio.ByteBuffer getDecimalType() {
-    return decimalType;
+  public org.joda.time.LocalTime getTimeField() {
+    return timeField;
   }
 
   /**
-   * Sets the value of the 'decimalType' field.
+   * Sets the value of the 'timeField' field.
    * @param value the value to set.
    */
-  public void setDecimalType(java.nio.ByteBuffer value) {
-    this.decimalType = value;
+  public void setTimeField(org.joda.time.LocalTime value) {
+    this.timeField = value;
+  }
+
+  /**
+   * Gets the value of the 'tsField' field.
+   * @return The value of the 'tsField' field.
+   */
+  public org.joda.time.DateTime getTsField() {
+    return tsField;
+  }
+
+  /**
+   * Sets the value of the 'tsField' field.
+   * @param value the value to set.
+   */
+  public void setTsField(org.joda.time.DateTime value) {
+    this.tsField = value;
+  }
+
+  /**
+   * Gets the value of the 'decField' field.
+   * @return The value of the 'decField' field.
+   */
+  public java.math.BigDecimal getDecField() {
+    return decField;
+  }
+
+  /**
+   * Sets the value of the 'decField' field.
+   * @param value the value to set.
+   */
+  public void setDecField(java.math.BigDecimal value) {
+    this.decField = value;
   }
 
   /**
@@ -201,10 +355,16 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
     implements org.apache.avro.data.RecordBuilder<TestRecord> {
 
     private java.lang.String recordId;
+    private boolean boolField;
     private long longField;
     private int intField;
+    private float floatField;
+    private double doubleField;
+    private java.nio.ByteBuffer bytesField;
     private org.joda.time.LocalDate dateField;
-    private java.nio.ByteBuffer decimalType;
+    private org.joda.time.LocalTime timeField;
+    private org.joda.time.DateTime tsField;
+    private java.math.BigDecimal decField;
 
     /** Creates a new Builder */
     private Builder() {
@@ -221,21 +381,45 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
         this.recordId = data().deepCopy(fields()[0].schema(), other.recordId);
         fieldSetFlags()[0] = true;
       }
-      if (isValidValue(fields()[1], other.longField)) {
-        this.longField = data().deepCopy(fields()[1].schema(), other.longField);
+      if (isValidValue(fields()[1], other.boolField)) {
+        this.boolField = data().deepCopy(fields()[1].schema(), other.boolField);
         fieldSetFlags()[1] = true;
       }
-      if (isValidValue(fields()[2], other.intField)) {
-        this.intField = data().deepCopy(fields()[2].schema(), other.intField);
+      if (isValidValue(fields()[2], other.longField)) {
+        this.longField = data().deepCopy(fields()[2].schema(), other.longField);
         fieldSetFlags()[2] = true;
       }
-      if (isValidValue(fields()[3], other.dateField)) {
-        this.dateField = data().deepCopy(fields()[3].schema(), other.dateField);
+      if (isValidValue(fields()[3], other.intField)) {
+        this.intField = data().deepCopy(fields()[3].schema(), other.intField);
         fieldSetFlags()[3] = true;
       }
-      if (isValidValue(fields()[4], other.decimalType)) {
-        this.decimalType = data().deepCopy(fields()[4].schema(), other.decimalType);
+      if (isValidValue(fields()[4], other.floatField)) {
+        this.floatField = data().deepCopy(fields()[4].schema(), other.floatField);
         fieldSetFlags()[4] = true;
+      }
+      if (isValidValue(fields()[5], other.doubleField)) {
+        this.doubleField = data().deepCopy(fields()[5].schema(), other.doubleField);
+        fieldSetFlags()[5] = true;
+      }
+      if (isValidValue(fields()[6], other.bytesField)) {
+        this.bytesField = data().deepCopy(fields()[6].schema(), other.bytesField);
+        fieldSetFlags()[6] = true;
+      }
+      if (isValidValue(fields()[7], other.dateField)) {
+        this.dateField = data().deepCopy(fields()[7].schema(), other.dateField);
+        fieldSetFlags()[7] = true;
+      }
+      if (isValidValue(fields()[8], other.timeField)) {
+        this.timeField = data().deepCopy(fields()[8].schema(), other.timeField);
+        fieldSetFlags()[8] = true;
+      }
+      if (isValidValue(fields()[9], other.tsField)) {
+        this.tsField = data().deepCopy(fields()[9].schema(), other.tsField);
+        fieldSetFlags()[9] = true;
+      }
+      if (isValidValue(fields()[10], other.decField)) {
+        this.decField = data().deepCopy(fields()[10].schema(), other.decField);
+        fieldSetFlags()[10] = true;
       }
     }
 
@@ -249,21 +433,45 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
         this.recordId = data().deepCopy(fields()[0].schema(), other.recordId);
         fieldSetFlags()[0] = true;
       }
-      if (isValidValue(fields()[1], other.longField)) {
-        this.longField = data().deepCopy(fields()[1].schema(), other.longField);
+      if (isValidValue(fields()[1], other.boolField)) {
+        this.boolField = data().deepCopy(fields()[1].schema(), other.boolField);
         fieldSetFlags()[1] = true;
       }
-      if (isValidValue(fields()[2], other.intField)) {
-        this.intField = data().deepCopy(fields()[2].schema(), other.intField);
+      if (isValidValue(fields()[2], other.longField)) {
+        this.longField = data().deepCopy(fields()[2].schema(), other.longField);
         fieldSetFlags()[2] = true;
       }
-      if (isValidValue(fields()[3], other.dateField)) {
-        this.dateField = data().deepCopy(fields()[3].schema(), other.dateField);
+      if (isValidValue(fields()[3], other.intField)) {
+        this.intField = data().deepCopy(fields()[3].schema(), other.intField);
         fieldSetFlags()[3] = true;
       }
-      if (isValidValue(fields()[4], other.decimalType)) {
-        this.decimalType = data().deepCopy(fields()[4].schema(), other.decimalType);
+      if (isValidValue(fields()[4], other.floatField)) {
+        this.floatField = data().deepCopy(fields()[4].schema(), other.floatField);
         fieldSetFlags()[4] = true;
+      }
+      if (isValidValue(fields()[5], other.doubleField)) {
+        this.doubleField = data().deepCopy(fields()[5].schema(), other.doubleField);
+        fieldSetFlags()[5] = true;
+      }
+      if (isValidValue(fields()[6], other.bytesField)) {
+        this.bytesField = data().deepCopy(fields()[6].schema(), other.bytesField);
+        fieldSetFlags()[6] = true;
+      }
+      if (isValidValue(fields()[7], other.dateField)) {
+        this.dateField = data().deepCopy(fields()[7].schema(), other.dateField);
+        fieldSetFlags()[7] = true;
+      }
+      if (isValidValue(fields()[8], other.timeField)) {
+        this.timeField = data().deepCopy(fields()[8].schema(), other.timeField);
+        fieldSetFlags()[8] = true;
+      }
+      if (isValidValue(fields()[9], other.tsField)) {
+        this.tsField = data().deepCopy(fields()[9].schema(), other.tsField);
+        fieldSetFlags()[9] = true;
+      }
+      if (isValidValue(fields()[10], other.decField)) {
+        this.decField = data().deepCopy(fields()[10].schema(), other.decField);
+        fieldSetFlags()[10] = true;
       }
     }
 
@@ -307,6 +515,44 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
     }
 
     /**
+      * Gets the value of the 'boolField' field.
+      * @return The value.
+      */
+    public java.lang.Boolean getBoolField() {
+      return boolField;
+    }
+
+    /**
+      * Sets the value of the 'boolField' field.
+      * @param value The value of 'boolField'.
+      * @return This builder.
+      */
+    public com.yshi.avro.TestRecord.Builder setBoolField(boolean value) {
+      validate(fields()[1], value);
+      this.boolField = value;
+      fieldSetFlags()[1] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'boolField' field has been set.
+      * @return True if the 'boolField' field has been set, false otherwise.
+      */
+    public boolean hasBoolField() {
+      return fieldSetFlags()[1];
+    }
+
+
+    /**
+      * Clears the value of the 'boolField' field.
+      * @return This builder.
+      */
+    public com.yshi.avro.TestRecord.Builder clearBoolField() {
+      fieldSetFlags()[1] = false;
+      return this;
+    }
+
+    /**
       * Gets the value of the 'longField' field.
       * @return The value.
       */
@@ -320,9 +566,9 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
       * @return This builder.
       */
     public com.yshi.avro.TestRecord.Builder setLongField(long value) {
-      validate(fields()[1], value);
+      validate(fields()[2], value);
       this.longField = value;
-      fieldSetFlags()[1] = true;
+      fieldSetFlags()[2] = true;
       return this;
     }
 
@@ -331,7 +577,7 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
       * @return True if the 'longField' field has been set, false otherwise.
       */
     public boolean hasLongField() {
-      return fieldSetFlags()[1];
+      return fieldSetFlags()[2];
     }
 
 
@@ -340,7 +586,7 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
       * @return This builder.
       */
     public com.yshi.avro.TestRecord.Builder clearLongField() {
-      fieldSetFlags()[1] = false;
+      fieldSetFlags()[2] = false;
       return this;
     }
 
@@ -358,9 +604,9 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
       * @return This builder.
       */
     public com.yshi.avro.TestRecord.Builder setIntField(int value) {
-      validate(fields()[2], value);
+      validate(fields()[3], value);
       this.intField = value;
-      fieldSetFlags()[2] = true;
+      fieldSetFlags()[3] = true;
       return this;
     }
 
@@ -369,7 +615,7 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
       * @return True if the 'intField' field has been set, false otherwise.
       */
     public boolean hasIntField() {
-      return fieldSetFlags()[2];
+      return fieldSetFlags()[3];
     }
 
 
@@ -378,7 +624,122 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
       * @return This builder.
       */
     public com.yshi.avro.TestRecord.Builder clearIntField() {
-      fieldSetFlags()[2] = false;
+      fieldSetFlags()[3] = false;
+      return this;
+    }
+
+    /**
+      * Gets the value of the 'floatField' field.
+      * @return The value.
+      */
+    public java.lang.Float getFloatField() {
+      return floatField;
+    }
+
+    /**
+      * Sets the value of the 'floatField' field.
+      * @param value The value of 'floatField'.
+      * @return This builder.
+      */
+    public com.yshi.avro.TestRecord.Builder setFloatField(float value) {
+      validate(fields()[4], value);
+      this.floatField = value;
+      fieldSetFlags()[4] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'floatField' field has been set.
+      * @return True if the 'floatField' field has been set, false otherwise.
+      */
+    public boolean hasFloatField() {
+      return fieldSetFlags()[4];
+    }
+
+
+    /**
+      * Clears the value of the 'floatField' field.
+      * @return This builder.
+      */
+    public com.yshi.avro.TestRecord.Builder clearFloatField() {
+      fieldSetFlags()[4] = false;
+      return this;
+    }
+
+    /**
+      * Gets the value of the 'doubleField' field.
+      * @return The value.
+      */
+    public java.lang.Double getDoubleField() {
+      return doubleField;
+    }
+
+    /**
+      * Sets the value of the 'doubleField' field.
+      * @param value The value of 'doubleField'.
+      * @return This builder.
+      */
+    public com.yshi.avro.TestRecord.Builder setDoubleField(double value) {
+      validate(fields()[5], value);
+      this.doubleField = value;
+      fieldSetFlags()[5] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'doubleField' field has been set.
+      * @return True if the 'doubleField' field has been set, false otherwise.
+      */
+    public boolean hasDoubleField() {
+      return fieldSetFlags()[5];
+    }
+
+
+    /**
+      * Clears the value of the 'doubleField' field.
+      * @return This builder.
+      */
+    public com.yshi.avro.TestRecord.Builder clearDoubleField() {
+      fieldSetFlags()[5] = false;
+      return this;
+    }
+
+    /**
+      * Gets the value of the 'bytesField' field.
+      * @return The value.
+      */
+    public java.nio.ByteBuffer getBytesField() {
+      return bytesField;
+    }
+
+    /**
+      * Sets the value of the 'bytesField' field.
+      * @param value The value of 'bytesField'.
+      * @return This builder.
+      */
+    public com.yshi.avro.TestRecord.Builder setBytesField(java.nio.ByteBuffer value) {
+      validate(fields()[6], value);
+      this.bytesField = value;
+      fieldSetFlags()[6] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'bytesField' field has been set.
+      * @return True if the 'bytesField' field has been set, false otherwise.
+      */
+    public boolean hasBytesField() {
+      return fieldSetFlags()[6];
+    }
+
+
+    /**
+      * Clears the value of the 'bytesField' field.
+      * @return This builder.
+      */
+    public com.yshi.avro.TestRecord.Builder clearBytesField() {
+      bytesField = null;
+      fieldSetFlags()[6] = false;
       return this;
     }
 
@@ -396,9 +757,9 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
       * @return This builder.
       */
     public com.yshi.avro.TestRecord.Builder setDateField(org.joda.time.LocalDate value) {
-      validate(fields()[3], value);
+      validate(fields()[7], value);
       this.dateField = value;
-      fieldSetFlags()[3] = true;
+      fieldSetFlags()[7] = true;
       return this;
     }
 
@@ -407,7 +768,7 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
       * @return True if the 'dateField' field has been set, false otherwise.
       */
     public boolean hasDateField() {
-      return fieldSetFlags()[3];
+      return fieldSetFlags()[7];
     }
 
 
@@ -416,46 +777,122 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
       * @return This builder.
       */
     public com.yshi.avro.TestRecord.Builder clearDateField() {
-      fieldSetFlags()[3] = false;
+      fieldSetFlags()[7] = false;
       return this;
     }
 
     /**
-      * Gets the value of the 'decimalType' field.
+      * Gets the value of the 'timeField' field.
       * @return The value.
       */
-    public java.nio.ByteBuffer getDecimalType() {
-      return decimalType;
+    public org.joda.time.LocalTime getTimeField() {
+      return timeField;
     }
 
     /**
-      * Sets the value of the 'decimalType' field.
-      * @param value The value of 'decimalType'.
+      * Sets the value of the 'timeField' field.
+      * @param value The value of 'timeField'.
       * @return This builder.
       */
-    public com.yshi.avro.TestRecord.Builder setDecimalType(java.nio.ByteBuffer value) {
-      validate(fields()[4], value);
-      this.decimalType = value;
-      fieldSetFlags()[4] = true;
+    public com.yshi.avro.TestRecord.Builder setTimeField(org.joda.time.LocalTime value) {
+      validate(fields()[8], value);
+      this.timeField = value;
+      fieldSetFlags()[8] = true;
       return this;
     }
 
     /**
-      * Checks whether the 'decimalType' field has been set.
-      * @return True if the 'decimalType' field has been set, false otherwise.
+      * Checks whether the 'timeField' field has been set.
+      * @return True if the 'timeField' field has been set, false otherwise.
       */
-    public boolean hasDecimalType() {
-      return fieldSetFlags()[4];
+    public boolean hasTimeField() {
+      return fieldSetFlags()[8];
     }
 
 
     /**
-      * Clears the value of the 'decimalType' field.
+      * Clears the value of the 'timeField' field.
       * @return This builder.
       */
-    public com.yshi.avro.TestRecord.Builder clearDecimalType() {
-      decimalType = null;
-      fieldSetFlags()[4] = false;
+    public com.yshi.avro.TestRecord.Builder clearTimeField() {
+      fieldSetFlags()[8] = false;
+      return this;
+    }
+
+    /**
+      * Gets the value of the 'tsField' field.
+      * @return The value.
+      */
+    public org.joda.time.DateTime getTsField() {
+      return tsField;
+    }
+
+    /**
+      * Sets the value of the 'tsField' field.
+      * @param value The value of 'tsField'.
+      * @return This builder.
+      */
+    public com.yshi.avro.TestRecord.Builder setTsField(org.joda.time.DateTime value) {
+      validate(fields()[9], value);
+      this.tsField = value;
+      fieldSetFlags()[9] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'tsField' field has been set.
+      * @return True if the 'tsField' field has been set, false otherwise.
+      */
+    public boolean hasTsField() {
+      return fieldSetFlags()[9];
+    }
+
+
+    /**
+      * Clears the value of the 'tsField' field.
+      * @return This builder.
+      */
+    public com.yshi.avro.TestRecord.Builder clearTsField() {
+      fieldSetFlags()[9] = false;
+      return this;
+    }
+
+    /**
+      * Gets the value of the 'decField' field.
+      * @return The value.
+      */
+    public java.math.BigDecimal getDecField() {
+      return decField;
+    }
+
+    /**
+      * Sets the value of the 'decField' field.
+      * @param value The value of 'decField'.
+      * @return This builder.
+      */
+    public com.yshi.avro.TestRecord.Builder setDecField(java.math.BigDecimal value) {
+      validate(fields()[10], value);
+      this.decField = value;
+      fieldSetFlags()[10] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'decField' field has been set.
+      * @return True if the 'decField' field has been set, false otherwise.
+      */
+    public boolean hasDecField() {
+      return fieldSetFlags()[10];
+    }
+
+
+    /**
+      * Clears the value of the 'decField' field.
+      * @return This builder.
+      */
+    public com.yshi.avro.TestRecord.Builder clearDecField() {
+      decField = null;
+      fieldSetFlags()[10] = false;
       return this;
     }
 
@@ -464,10 +901,16 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
       try {
         TestRecord record = new TestRecord();
         record.recordId = fieldSetFlags()[0] ? this.recordId : (java.lang.String) defaultValue(fields()[0], record.getConversion(0));
-        record.longField = fieldSetFlags()[1] ? this.longField : (java.lang.Long) defaultValue(fields()[1], record.getConversion(1));
-        record.intField = fieldSetFlags()[2] ? this.intField : (java.lang.Integer) defaultValue(fields()[2], record.getConversion(2));
-        record.dateField = fieldSetFlags()[3] ? this.dateField : (org.joda.time.LocalDate) defaultValue(fields()[3], record.getConversion(3));
-        record.decimalType = fieldSetFlags()[4] ? this.decimalType : (java.nio.ByteBuffer) defaultValue(fields()[4], record.getConversion(4));
+        record.boolField = fieldSetFlags()[1] ? this.boolField : (java.lang.Boolean) defaultValue(fields()[1], record.getConversion(1));
+        record.longField = fieldSetFlags()[2] ? this.longField : (java.lang.Long) defaultValue(fields()[2], record.getConversion(2));
+        record.intField = fieldSetFlags()[3] ? this.intField : (java.lang.Integer) defaultValue(fields()[3], record.getConversion(3));
+        record.floatField = fieldSetFlags()[4] ? this.floatField : (java.lang.Float) defaultValue(fields()[4], record.getConversion(4));
+        record.doubleField = fieldSetFlags()[5] ? this.doubleField : (java.lang.Double) defaultValue(fields()[5], record.getConversion(5));
+        record.bytesField = fieldSetFlags()[6] ? this.bytesField : (java.nio.ByteBuffer) defaultValue(fields()[6], record.getConversion(6));
+        record.dateField = fieldSetFlags()[7] ? this.dateField : (org.joda.time.LocalDate) defaultValue(fields()[7], record.getConversion(7));
+        record.timeField = fieldSetFlags()[8] ? this.timeField : (org.joda.time.LocalTime) defaultValue(fields()[8], record.getConversion(8));
+        record.tsField = fieldSetFlags()[9] ? this.tsField : (org.joda.time.DateTime) defaultValue(fields()[9], record.getConversion(9));
+        record.decField = fieldSetFlags()[10] ? this.decField : (java.math.BigDecimal) defaultValue(fields()[10], record.getConversion(10));
         return record;
       } catch (Exception e) {
         throw new org.apache.avro.AvroRuntimeException(e);
@@ -476,7 +919,7 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
   }
 
   private static final org.apache.avro.io.DatumWriter
-    WRITER$ = new org.apache.avro.specific.SpecificDatumWriter(SCHEMA$);
+    WRITER$ = MODEL$.createDatumWriter(SCHEMA$);
 
   @Override public void writeExternal(java.io.ObjectOutput out)
     throws java.io.IOException {
@@ -484,7 +927,7 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
   }
 
   private static final org.apache.avro.io.DatumReader
-    READER$ = new org.apache.avro.specific.SpecificDatumReader(SCHEMA$);
+    READER$ = MODEL$.createDatumReader(SCHEMA$);
 
   @Override public void readExternal(java.io.ObjectInput in)
     throws java.io.IOException {

@@ -2,10 +2,16 @@
 protocol YibingProtocol{
     record TestRecord {
         string recordId;
+        boolean boolField = true;
         long longField = -1;
         int intField = 1;
-        date dateField = "2016-01-01";
-        @logicalType("decimal") @precision(7) @scale(2) bytes decimalType = "\u0000000";
+        float floatField = 1.1;
+        double doubleField = 2.2;
+        bytes bytesField = "\u0001";
+        date dateField = 1451606400000;
+        time_ms timeField = 1451606400000;
+        timestamp_ms tsField = 1451606400000;
+        @logicalType("decimal") @precision(7) @scale(2) bytes decField = "\u0030\u0039";
     }
     enum Status {
         OK, FAILED

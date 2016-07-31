@@ -1,0 +1,6 @@
+{
+  "type" : "enum",
+  "name" : "Status",
+  "namespace" : "com.yshi.avro",
+  "symbols" : [ "OK", "FAILED" ]
+}

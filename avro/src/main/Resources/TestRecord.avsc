@@ -1,28 +1,33 @@
 {
-    "type" : "record",
-    "name" : "TestRecord",
-    "fields" : [ {
-      "name" : "recordId",
-      "type" : {
-        "type": "string",
-        "avro.java.string": "String"
-      }
-    }, {
-      "name" : "longField",
-      "type" : "long",
-      "default" : -1
-    }, {
-      "name" : "intField",
+  "type" : "record",
+  "name" : "TestRecord",
+  "namespace" : "com.yshi.avro",
+  "fields" : [ {
+    "name" : "recordId",
+    "type" : "string"
+  }, {
+    "name" : "longField",
+    "type" : "long",
+    "default" : -1
+  }, {
+    "name" : "intField",
+    "type" : "int",
+    "default" : 1
+  }, {
+    "name" : "dateField",
+    "type" : {
       "type" : "int",
-      "default" : 1
-    }, {
-      "name" : "decimalType",
-      "type" : {
-        "type" : "bytes",
-        "logicalType" : "decimal",
-        "precision" : 7,
-        "scale" : 2
-      },
-      "default" : "\u0000000"
-    }]
+      "logicalType" : "date"
+    },
+    "default" : 1451606400000
+  }, {
+    "name" : "decimalType",
+    "type" : {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 7,
+      "scale" : 2
+    },
+    "default" : "\u0000000"
+  } ]
 }
