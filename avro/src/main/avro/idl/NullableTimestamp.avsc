@@ -1,0 +1,8 @@
+    {
+      "type": "record",
+      "name": "NullableTimestamp",
+      "namespace": "com.yshi.avro",
+      "fields": [
+        { "name": "first", "type": ["null", {"type": "long", "logicalType":"timestamp-millis"}]}
+      ]
+    }

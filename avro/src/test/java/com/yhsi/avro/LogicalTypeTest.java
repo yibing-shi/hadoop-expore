@@ -6,21 +6,28 @@ import org.apache.avro.Schema;
 import org.apache.avro.data.TimeConversions;
 import org.apache.avro.file.DataFileWriter;
 import org.apache.avro.generic.GenericData;
+import org.apache.avro.generic.GenericDatumReader;
 import org.apache.avro.generic.GenericDatumWriter;
 import org.apache.avro.generic.GenericRecord;
 import org.apache.avro.generic.GenericRecordBuilder;
+import org.apache.avro.io.DatumReader;
 import org.apache.avro.io.DatumWriter;
+import org.apache.avro.io.Decoder;
+import org.apache.avro.io.DecoderFactory;
+import org.apache.avro.io.Encoder;
+import org.apache.avro.io.EncoderFactory;
 import org.apache.avro.specific.SpecificData;
+import org.apache.avro.specific.SpecificDatumReader;
 import org.apache.avro.specific.SpecificDatumWriter;
-import org.joda.time.LocalDate;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.nio.ByteBuffer;
 
 public class LogicalTypeTest {
   Schema schema;
@@ -35,13 +42,19 @@ public class LogicalTypeTest {
     GenericRecordBuilder builder = new GenericRecordBuilder(schema);
     GenericRecord campaign = builder.set("recordId", "test101").build();
 
-    File file = File.createTempFile("campaign", "avro");
-    file.deleteOnExit();
+    ByteArrayOutputStream outputStream = new ByteArrayOutputStream(8192);
     DatumWriter<GenericRecord> datumWriter = new GenericDatumWriter<GenericRecord>(schema);
-    DataFileWriter<GenericRecord> dataFileWriter = new DataFileWriter<GenericRecord>(datumWriter);
-    dataFileWriter.create(schema, file);
-    dataFileWriter.append(campaign);
-    dataFileWriter.close();
+    Encoder encoder = EncoderFactory.get().binaryEncoder(outputStream, null);
+    datumWriter.write(campaign, encoder);
+
+    encoder.flush();
+    ByteArrayInputStream inputStream = new ByteArrayInputStream(outputStream.toByteArray());
+    Decoder decoder = DecoderFactory.get().binaryDecoder(inputStream, null);
+    DatumReader<GenericRecord> reader = new GenericDatumReader<GenericRecord>(schema);
+    GenericRecord readOut = reader.read(null, decoder);
+    Assert.assertEquals(readOut, campaign, "should be the same");
+
+    SpecificData.get().createDatumWriter(schema);
   }
 
   @Test
@@ -49,13 +62,18 @@ public class LogicalTypeTest {
     TestRecord campaign = TestRecord.newBuilder().
         setRecordId("test102").
         build();
-    File file = File.createTempFile("campaign", "avro");
-    file.deleteOnExit();
     DatumWriter<TestRecord> datumWriter = new SpecificDatumWriter<TestRecord>(schema);
-    DataFileWriter<TestRecord> dataFileWriter = new DataFileWriter<TestRecord>(datumWriter);
-    dataFileWriter.create(schema, file);
-    dataFileWriter.append(campaign);
-    dataFileWriter.close();
+    final ByteArrayOutputStream out = new ByteArrayOutputStream(8192);
+    final Encoder encoder = EncoderFactory.get().binaryEncoder(out, null);
+    datumWriter.write(campaign, encoder);
+    encoder.flush();
+
+    final InputStream in = new ByteArrayInputStream(out.toByteArray());
+    final Decoder decoder = DecoderFactory.get().binaryDecoder(in, null);
+    final DatumReader<TestRecord> reader = new SpecificDatumReader<TestRecord>(schema);
+    TestRecord readOut = reader.read(null, decoder);
+
+    Assert.assertEquals(readOut, campaign);
   }
 
   @Test
@@ -78,8 +96,6 @@ public class LogicalTypeTest {
     GenericData.get().addLogicalTypeConversion(new Conversions.DecimalConversion());
     GenericRecord campaign = builder.
         set("recordId", "test101").
-        set("decimalType", ByteBuffer.wrap(new BigDecimal(1.02).unscaledValue().toByteArray())).
-        set("dateField", 1451606400).
         build();
 
     TestRecord copied = (TestRecord) SpecificData.get().deepCopy(schema, campaign);
@@ -89,12 +105,10 @@ public class LogicalTypeTest {
 
   @Test
   public void testDeepCopy() throws Exception {
-    LocalDate dateValue = new LocalDate(2016,1,1);
     TestRecord campaign = TestRecord.newBuilder().
         setRecordId("test102").
         setLongField(1L).
         setIntField(2).
-        setDateField(dateValue).
         build();
     SpecificData.get().deepCopy(campaign.getSchema(), campaign);
   }

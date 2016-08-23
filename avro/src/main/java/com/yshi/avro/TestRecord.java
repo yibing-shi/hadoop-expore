@@ -5,6 +5,7 @@
  */
 package com.yshi.avro;
 
+import org.apache.avro.ConversionResolver;
 import org.apache.avro.specific.SpecificData;
 import org.apache.avro.message.BinaryMessageEncoder;
 import org.apache.avro.message.BinaryMessageDecoder;
@@ -12,8 +13,8 @@ import org.apache.avro.message.BinaryMessageDecoder;
 @SuppressWarnings("all")
 @org.apache.avro.specific.AvroGenerated
 public class TestRecord extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = -2296015181155631452L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"TestRecord\",\"namespace\":\"com.yshi.avro\",\"fields\":[{\"name\":\"recordId\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"boolField\",\"type\":\"boolean\",\"default\":true},{\"name\":\"longField\",\"type\":\"long\",\"default\":-1},{\"name\":\"intField\",\"type\":\"int\",\"default\":1},{\"name\":\"floatField\",\"type\":\"float\",\"default\":1.1},{\"name\":\"doubleField\",\"type\":\"double\",\"default\":2.2},{\"name\":\"bytesField\",\"type\":\"bytes\",\"default\":\"\\u0001\"},{\"name\":\"dateField\",\"type\":{\"type\":\"int\",\"logicalType\":\"date\"},\"default\":1451606400000},{\"name\":\"timeField\",\"type\":{\"type\":\"int\",\"logicalType\":\"time-millis\"},\"default\":1451606400000},{\"name\":\"tsField\",\"type\":{\"type\":\"long\",\"logicalType\":\"timestamp-millis\"},\"default\":1451606400000},{\"name\":\"decField\",\"type\":{\"type\":\"bytes\",\"logicalType\":\"decimal\",\"precision\":7,\"scale\":2},\"default\":\"09\"}]}");
+  private static final long serialVersionUID = -6508768456554304163L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"TestRecord\",\"namespace\":\"com.yshi.avro\",\"fields\":[{\"name\":\"recordId\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"boolField\",\"type\":\"boolean\",\"default\":true},{\"name\":\"longField\",\"type\":\"long\",\"default\":-1},{\"name\":\"intField\",\"type\":\"int\",\"default\":1},{\"name\":\"floatField\",\"type\":\"float\",\"default\":1.1},{\"name\":\"doubleField\",\"type\":\"double\",\"default\":2.2},{\"name\":\"bytesField\",\"type\":\"bytes\",\"default\":\"\\u0001\\u0002\\u0003\"},{\"name\":\"dateField\",\"type\":{\"type\":\"int\",\"logicalType\":\"date\"},\"default\":16801},{\"name\":\"timeField\",\"type\":{\"type\":\"int\",\"logicalType\":\"time-millis\"},\"default\":46800000},{\"name\":\"tsField\",\"type\":{\"type\":\"long\",\"logicalType\":\"timestamp-millis\"},\"default\":1451606400000},{\"name\":\"decField\",\"type\":{\"type\":\"bytes\",\"logicalType\":\"decimal\",\"precision\":7,\"scale\":2},\"default\":\"09\"},{\"name\":\"intArrayField\",\"type\":{\"type\":\"array\",\"items\":\"int\"}},{\"name\":\"dateArrayField\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"int\",\"logicalType\":\"date\"}}}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
@@ -46,6 +47,8 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
   @Deprecated public org.joda.time.LocalTime timeField;
   @Deprecated public org.joda.time.DateTime tsField;
   @Deprecated public java.math.BigDecimal decField;
+  @Deprecated public java.util.List<java.lang.Integer> intArrayField;
+  @Deprecated public java.util.List<org.joda.time.LocalDate> dateArrayField;
 
   /**
    * Default constructor.  Note that this does not initialize fields
@@ -67,8 +70,10 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
    * @param timeField The new value for timeField
    * @param tsField The new value for tsField
    * @param decField The new value for decField
+   * @param intArrayField The new value for intArrayField
+   * @param dateArrayField The new value for dateArrayField
    */
-  public TestRecord(java.lang.String recordId, java.lang.Boolean boolField, java.lang.Long longField, java.lang.Integer intField, java.lang.Float floatField, java.lang.Double doubleField, java.nio.ByteBuffer bytesField, org.joda.time.LocalDate dateField, org.joda.time.LocalTime timeField, org.joda.time.DateTime tsField, java.math.BigDecimal decField) {
+  public TestRecord(java.lang.String recordId, java.lang.Boolean boolField, java.lang.Long longField, java.lang.Integer intField, java.lang.Float floatField, java.lang.Double doubleField, java.nio.ByteBuffer bytesField, org.joda.time.LocalDate dateField, org.joda.time.LocalTime timeField, org.joda.time.DateTime tsField, java.math.BigDecimal decField, java.util.List<java.lang.Integer> intArrayField, java.util.List<org.joda.time.LocalDate> dateArrayField) {
     this.recordId = recordId;
     this.boolField = boolField;
     this.longField = longField;
@@ -80,6 +85,8 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
     this.timeField = timeField;
     this.tsField = tsField;
     this.decField = decField;
+    this.intArrayField = intArrayField;
+    this.dateArrayField = dateArrayField;
   }
 
   public org.apache.avro.Schema getSchema() { return SCHEMA$; }
@@ -97,6 +104,8 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
     case 8: return timeField;
     case 9: return tsField;
     case 10: return decField;
+    case 11: return intArrayField;
+    case 12: return dateArrayField;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -106,25 +115,14 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
   protected static final org.apache.avro.data.TimeConversions.TimestampConversion TIMESTAMP_CONVERSION = new org.apache.avro.data.TimeConversions.TimestampConversion();
   protected static final org.apache.avro.Conversions.DecimalConversion DECIMAL_CONVERSION = new org.apache.avro.Conversions.DecimalConversion();
 
-  private final org.apache.avro.Conversion<?>[] conversions =
-      new org.apache.avro.Conversion<?>[] {
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      DATE_CONVERSION,
-      TIME_CONVERSION,
-      TIMESTAMP_CONVERSION,
-      DECIMAL_CONVERSION,
-      null
-  };
+  private final java.util.Set<org.apache.avro.Conversion<?>> conversionsSet =
+      new java.util.HashSet<org.apache.avro.Conversion<?>> (java.util.Arrays.asList(
+        TIMESTAMP_CONVERSION, DATE_CONVERSION, DECIMAL_CONVERSION, TIME_CONVERSION
+      ));
 
   @Override
-  public org.apache.avro.Conversion<?> getConversion(int field) {
-    return conversions[field];
+  public java.util.Set<org.apache.avro.Conversion<?>> getConversions() {
+    return conversionsSet;
   }
 
   // Used by DatumReader.  Applications should not call.
@@ -142,6 +140,8 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
     case 8: timeField = (org.joda.time.LocalTime)value$; break;
     case 9: tsField = (org.joda.time.DateTime)value$; break;
     case 10: decField = (java.math.BigDecimal)value$; break;
+    case 11: intArrayField = (java.util.List<java.lang.Integer>)value$; break;
+    case 12: dateArrayField = (java.util.List<org.joda.time.LocalDate>)value$; break;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -323,6 +323,38 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
   }
 
   /**
+   * Gets the value of the 'intArrayField' field.
+   * @return The value of the 'intArrayField' field.
+   */
+  public java.util.List<java.lang.Integer> getIntArrayField() {
+    return intArrayField;
+  }
+
+  /**
+   * Sets the value of the 'intArrayField' field.
+   * @param value the value to set.
+   */
+  public void setIntArrayField(java.util.List<java.lang.Integer> value) {
+    this.intArrayField = value;
+  }
+
+  /**
+   * Gets the value of the 'dateArrayField' field.
+   * @return The value of the 'dateArrayField' field.
+   */
+  public java.util.List<org.joda.time.LocalDate> getDateArrayField() {
+    return dateArrayField;
+  }
+
+  /**
+   * Sets the value of the 'dateArrayField' field.
+   * @param value the value to set.
+   */
+  public void setDateArrayField(java.util.List<org.joda.time.LocalDate> value) {
+    this.dateArrayField = value;
+  }
+
+  /**
    * Creates a new TestRecord RecordBuilder.
    * @return A new TestRecord RecordBuilder
    */
@@ -365,6 +397,8 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
     private org.joda.time.LocalTime timeField;
     private org.joda.time.DateTime tsField;
     private java.math.BigDecimal decField;
+    private java.util.List<java.lang.Integer> intArrayField;
+    private java.util.List<org.joda.time.LocalDate> dateArrayField;
 
     /** Creates a new Builder */
     private Builder() {
@@ -421,6 +455,14 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
         this.decField = data().deepCopy(fields()[10].schema(), other.decField);
         fieldSetFlags()[10] = true;
       }
+      if (isValidValue(fields()[11], other.intArrayField)) {
+        this.intArrayField = data().deepCopy(fields()[11].schema(), other.intArrayField);
+        fieldSetFlags()[11] = true;
+      }
+      if (isValidValue(fields()[12], other.dateArrayField)) {
+        this.dateArrayField = data().deepCopy(fields()[12].schema(), other.dateArrayField);
+        fieldSetFlags()[12] = true;
+      }
     }
 
     /**
@@ -472,6 +514,14 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
       if (isValidValue(fields()[10], other.decField)) {
         this.decField = data().deepCopy(fields()[10].schema(), other.decField);
         fieldSetFlags()[10] = true;
+      }
+      if (isValidValue(fields()[11], other.intArrayField)) {
+        this.intArrayField = data().deepCopy(fields()[11].schema(), other.intArrayField);
+        fieldSetFlags()[11] = true;
+      }
+      if (isValidValue(fields()[12], other.dateArrayField)) {
+        this.dateArrayField = data().deepCopy(fields()[12].schema(), other.dateArrayField);
+        fieldSetFlags()[12] = true;
       }
     }
 
@@ -896,10 +946,89 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
       return this;
     }
 
+    /**
+      * Gets the value of the 'intArrayField' field.
+      * @return The value.
+      */
+    public java.util.List<java.lang.Integer> getIntArrayField() {
+      return intArrayField;
+    }
+
+    /**
+      * Sets the value of the 'intArrayField' field.
+      * @param value The value of 'intArrayField'.
+      * @return This builder.
+      */
+    public com.yshi.avro.TestRecord.Builder setIntArrayField(java.util.List<java.lang.Integer> value) {
+      validate(fields()[11], value);
+      this.intArrayField = value;
+      fieldSetFlags()[11] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'intArrayField' field has been set.
+      * @return True if the 'intArrayField' field has been set, false otherwise.
+      */
+    public boolean hasIntArrayField() {
+      return fieldSetFlags()[11];
+    }
+
+
+    /**
+      * Clears the value of the 'intArrayField' field.
+      * @return This builder.
+      */
+    public com.yshi.avro.TestRecord.Builder clearIntArrayField() {
+      intArrayField = null;
+      fieldSetFlags()[11] = false;
+      return this;
+    }
+
+    /**
+      * Gets the value of the 'dateArrayField' field.
+      * @return The value.
+      */
+    public java.util.List<org.joda.time.LocalDate> getDateArrayField() {
+      return dateArrayField;
+    }
+
+    /**
+      * Sets the value of the 'dateArrayField' field.
+      * @param value The value of 'dateArrayField'.
+      * @return This builder.
+      */
+    public com.yshi.avro.TestRecord.Builder setDateArrayField(java.util.List<org.joda.time.LocalDate> value) {
+      validate(fields()[12], value);
+      this.dateArrayField = value;
+      fieldSetFlags()[12] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'dateArrayField' field has been set.
+      * @return True if the 'dateArrayField' field has been set, false otherwise.
+      */
+    public boolean hasDateArrayField() {
+      return fieldSetFlags()[12];
+    }
+
+
+    /**
+      * Clears the value of the 'dateArrayField' field.
+      * @return This builder.
+      */
+    public com.yshi.avro.TestRecord.Builder clearDateArrayField() {
+      dateArrayField = null;
+      fieldSetFlags()[12] = false;
+      return this;
+    }
+
     @Override
     public TestRecord build() {
       try {
         TestRecord record = new TestRecord();
+        org.apache.avro.ConversionResolver conversionResolver = new org.apache.avro.ConversionResolver(record.getConversions());
         record.recordId = fieldSetFlags()[0] ? this.recordId : (java.lang.String) defaultValue(fields()[0], record.getConversion(0));
         record.boolField = fieldSetFlags()[1] ? this.boolField : (java.lang.Boolean) defaultValue(fields()[1], record.getConversion(1));
         record.longField = fieldSetFlags()[2] ? this.longField : (java.lang.Long) defaultValue(fields()[2], record.getConversion(2));
@@ -911,6 +1040,8 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
         record.timeField = fieldSetFlags()[8] ? this.timeField : (org.joda.time.LocalTime) defaultValue(fields()[8], record.getConversion(8));
         record.tsField = fieldSetFlags()[9] ? this.tsField : (org.joda.time.DateTime) defaultValue(fields()[9], record.getConversion(9));
         record.decField = fieldSetFlags()[10] ? this.decField : (java.math.BigDecimal) defaultValue(fields()[10], record.getConversion(10));
+        record.intArrayField = fieldSetFlags()[11] ? this.intArrayField : (java.util.List<java.lang.Integer>) defaultValue(fields()[11], record.getConversion(11));
+        record.dateArrayField = fieldSetFlags()[12] ? this.dateArrayField : (java.util.List<org.joda.time.LocalDate>) defaultValue(fields()[12], record.getConversion(12));
         return record;
       } catch (Exception e) {
         throw new org.apache.avro.AvroRuntimeException(e);

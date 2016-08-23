@@ -72,10 +72,11 @@
                         <id>protocol</id>
                         <phase>generate-sources</phase>
                         <goals>
+                            <goal>schema</goal>
+                            <goal>protocol</goal>
                             <goal>idl-protocol</goal>
                         </goals>
                         <configuration>
-                            <includes>*.idl</includes>
                             <sourceDirectory>${project.basedir}/src/main/avro/idl</sourceDirectory>
                             <outputDirectory>${project.basedir}/src/main/java</outputDirectory>
                             <testSourceDirectory>${project.basedir}/src/test/avro/idl</testSourceDirectory>

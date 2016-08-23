@@ -7,11 +7,13 @@ protocol YibingProtocol{
         int intField = 1;
         float floatField = 1.1;
         double doubleField = 2.2;
-        bytes bytesField = "\u0001";
-        date dateField = 1451606400000;
-        time_ms timeField = 1451606400000;
+        bytes bytesField = "\u0001\u0002\u0003";
+        date dateField = 16801;
+        time_ms timeField = 46800000;
         timestamp_ms tsField = 1451606400000;
         @logicalType("decimal") @precision(7) @scale(2) bytes decField = "\u0030\u0039";
+        array<int> intArrayField;
+        array<date> dateArrayField;
     }
     enum Status {
         OK, FAILED
