@@ -8,6 +8,7 @@ package com.yshi.avro;
 import org.apache.avro.specific.SpecificData;
 import org.apache.avro.message.BinaryMessageEncoder;
 import org.apache.avro.message.BinaryMessageDecoder;
+import org.apache.avro.message.SchemaStore;
 
 @SuppressWarnings("all")
 @org.apache.avro.specific.AvroGenerated
@@ -23,6 +24,21 @@ public class NullableTimestamp extends org.apache.avro.specific.SpecificRecordBa
 
   private static final BinaryMessageDecoder<NullableTimestamp> DECODER =
       new BinaryMessageDecoder<NullableTimestamp>(MODEL$, SCHEMA$);
+
+  /**
+   * Return the BinaryMessageDecoder instance used by this class.
+   */
+  public static BinaryMessageDecoder<NullableTimestamp> getDecoder() {
+    return DECODER;
+  }
+
+  /**
+   * Create a new BinaryMessageDecoder instance for this class that uses the specified {@link SchemaStore}.
+   * @param resolver a {@link SchemaStore} used to find schemas by fingerprint
+   */
+  public static BinaryMessageDecoder<NullableTimestamp> createDecoder(SchemaStore resolver) {
+    return new BinaryMessageDecoder<NullableTimestamp>(MODEL$, SCHEMA$, resolver);
+  }
 
   /** Serializes this NullableTimestamp to a ByteBuffer. */
   public java.nio.ByteBuffer toByteBuffer() throws java.io.IOException {
@@ -59,21 +75,6 @@ public class NullableTimestamp extends org.apache.avro.specific.SpecificRecordBa
     case 0: return first;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
-  }
-
-  protected static final org.apache.avro.data.TimeConversions.DateConversion DATE_CONVERSION = new org.apache.avro.data.TimeConversions.DateConversion();
-  protected static final org.apache.avro.data.TimeConversions.TimeConversion TIME_CONVERSION = new org.apache.avro.data.TimeConversions.TimeConversion();
-  protected static final org.apache.avro.data.TimeConversions.TimestampConversion TIMESTAMP_CONVERSION = new org.apache.avro.data.TimeConversions.TimestampConversion();
-  protected static final org.apache.avro.Conversions.DecimalConversion DECIMAL_CONVERSION = new org.apache.avro.Conversions.DecimalConversion();
-
-  private final java.util.Set<org.apache.avro.Conversion<?>> conversionsSet =
-      new java.util.HashSet<org.apache.avro.Conversion<?>> (java.util.Arrays.asList(
-        TIMESTAMP_CONVERSION
-      ));
-
-  @Override
-  public java.util.Set<org.apache.avro.Conversion<?>> getConversions() {
-    return conversionsSet;
   }
 
   // Used by DatumReader.  Applications should not call.
@@ -204,27 +205,30 @@ public class NullableTimestamp extends org.apache.avro.specific.SpecificRecordBa
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public NullableTimestamp build() {
       try {
         NullableTimestamp record = new NullableTimestamp();
-        record.first = fieldSetFlags()[0] ? this.first : (org.joda.time.DateTime) defaultValue(fields()[0], record.getConversion(0));
+        record.first = fieldSetFlags()[0] ? this.first : (org.joda.time.DateTime) defaultValue(fields()[0]);
         return record;
-      } catch (Exception e) {
+      } catch (java.lang.Exception e) {
         throw new org.apache.avro.AvroRuntimeException(e);
       }
     }
   }
 
-  private static final org.apache.avro.io.DatumWriter
-    WRITER$ = MODEL$.createDatumWriter(SCHEMA$);
+  @SuppressWarnings("unchecked")
+  private static final org.apache.avro.io.DatumWriter<NullableTimestamp>
+    WRITER$ = (org.apache.avro.io.DatumWriter<NullableTimestamp>)MODEL$.createDatumWriter(SCHEMA$);
 
   @Override public void writeExternal(java.io.ObjectOutput out)
     throws java.io.IOException {
     WRITER$.write(this, SpecificData.getEncoder(out));
   }
 
-  private static final org.apache.avro.io.DatumReader
-    READER$ = MODEL$.createDatumReader(SCHEMA$);
+  @SuppressWarnings("unchecked")
+  private static final org.apache.avro.io.DatumReader<NullableTimestamp>
+    READER$ = (org.apache.avro.io.DatumReader<NullableTimestamp>)MODEL$.createDatumReader(SCHEMA$);
 
   @Override public void readExternal(java.io.ObjectInput in)
     throws java.io.IOException {

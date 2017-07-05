@@ -33,14 +33,12 @@ public class Hive2ClientKerberos {
         Statement stmt = null;
         ResultSet rs = null;
         try {
-            UserGroupInformation.getLoginUser().doAs(new PrivilegedExceptionAction<Connection>() {
+            db = UserGroupInformation.getLoginUser().doAs(new PrivilegedExceptionAction<Connection>() {
                 @Override
                 public Connection run() throws Exception {
                     return DriverManager.getConnection(getWholeJdbcUrl(jdbcUrl, principal), "hive", "");
                 }
             });
-            db = getConnectionWithLogin(UserGroupInformation.getLoginUser(),
-                    getWholeJdbcUrl(jdbcUrl, principal), "hive", "");
             stmt = db.createStatement();
             rs = stmt.executeQuery("show databases");
 
@@ -60,13 +58,4 @@ public class Hive2ClientKerberos {
         }
     }
 
-    private static Connection getConnectionWithLogin(final UserGroupInformation ugi, final String url,
-                                                     final String user, final String password)
-            throws IOException, InterruptedException {
-        return ugi.doAs(new PrivilegedExceptionAction<Connection>() {
-            public Connection run() throws Exception {
-                return DriverManager.getConnection(url, user, password);
-            }
-        });
-    }
 }

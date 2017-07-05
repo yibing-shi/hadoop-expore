@@ -1,0 +1,12 @@
+@namespace("com.yshi.avro")
+protocol NestedRecordProtocol{
+    record InnerRecord {
+        string desc;
+        string value;
+    }
+
+    record OuterRecord {
+        long ID;
+        InnerRecord rec;
+    }
+}

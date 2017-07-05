@@ -1,0 +1,8 @@
+    {
+      "type": "record",
+      "name": "Avro1927",
+      "namespace": "com.yshi.avro",
+      "fields": [
+        { "name": "myField", "type": "string", "default": ""}
+      ]
+    }

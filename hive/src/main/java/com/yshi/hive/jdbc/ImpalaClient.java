@@ -6,7 +6,7 @@ import java.sql.*;
 
 public class ImpalaClient {
 
-    private static final String DFT_URL = "jdbc:hive2://ec2-54-176-125-209.us-west-1.compute.amazonaws.com:21050/;auth=noSasl";
+    private static final String DFT_URL = "jdbc:hive2://nightly510-unsecure-2.gce.cloudera.com:21050/;auth=noSasl";
     private static final String DFT_USER = "impala";
     private static final String DFT_PSWD = "";
 
@@ -35,10 +35,14 @@ public class ImpalaClient {
         try {
             db = DriverManager.getConnection(url, user, password);
             stmt = db.createStatement();
-            rs = stmt.executeQuery("show databases");
+            rs = stmt.executeQuery("describe default.sample_07");
 
+            ResultSetMetaData metaData = rs.getMetaData();
             while (rs.next()) {
-                System.out.println(rs.getString(1));
+                for (int i = 1; i <=metaData.getColumnCount(); i++) {
+                    System.out.print(metaData.getColumnName(i) + ":" + rs.getString(i) + '\t');
+                }
+                System.out.println();
             }
         } finally {
             DbUtils.closeQuietly(db, stmt, rs);

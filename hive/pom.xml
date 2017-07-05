@@ -16,9 +16,9 @@
 
     <properties>
 
-        <hadoop.version>2.6.0-CDH5.5.2</hadoop.version>
-        <hive.version>1.1.0-CDH5.5.2</hive.version>
-        <sqoop.version>1.4.6-cdh5.5.2</sqoop.version>
+        <hadoop.version>2.6.0-CDH5.11.0</hadoop.version>
+        <hive.version>1.1.0-CDH5.11.0</hive.version>
+        <sqoop.version>1.4.6-cdh5.11.0</sqoop.version>
 
         <!--
         <hadoop.version>2.5.0-CDH5.2.4</hadoop.version>
