@@ -7,7 +7,7 @@ import org.apache.commons.dbutils.DbUtils
 import org.apache.hadoop.conf.Configuration
 import org.apache.hadoop.security.UserGroupInformation
 
-object Hive2ClientScala {
+object Hive2ClientScalaKerberos {
   def main(args: Array[String]): Unit = {
     if (args.length != 4) {
       System.err.println("Usage: java Hive2ClientKerberos <jdbc-url> <krb5.conf-path> <principal> <keytab-file-path>")

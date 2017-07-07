@@ -12,13 +12,16 @@
     <artifactId>explore.parquet</artifactId>
 
     <properties>
-        <parquet.version>1.5.0-cdh5.7.1</parquet.version>
+        <parquet.version>1.5.0-cdh5.11.0</parquet.version>
+        <hadoop.version>2.6.0-CDH5.11.0</hadoop.version>
+        <hive.version>1.1.0-CDH5.11.0</hive.version>
+        <sqoop.version>1.4.6-cdh5.11.0</sqoop.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>com.twitter</groupId>
-            <artifactId>parquet</artifactId>
+            <artifactId>parquet-hadoop</artifactId>
             <version>${parquet.version}</version>
         </dependency>
 
@@ -26,6 +29,18 @@
             <groupId>com.twitter</groupId>
             <artifactId>parquet-avro</artifactId>
             <version>${parquet.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-common</artifactId>
+            <version>${hadoop.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-mapreduce-client-jobclient</artifactId>
+            <version>${hadoop.version}</version>
         </dependency>
     </dependencies>
 
