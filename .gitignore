@@ -5,3 +5,4 @@ metastore_db/
 target/
 avro/*.iml
 hive/*.iml
+parquet/*.iml
