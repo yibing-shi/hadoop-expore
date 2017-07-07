@@ -64,7 +64,6 @@
         <module>avro</module>
         <module>hive</module>
         <module>parquet</module>
-        <module>thrift</module>
     </modules>
 
 </project>
