@@ -16,6 +16,9 @@
         </repository>
     </repositories>
 
+    <properties>
+        <scala.version>2.10.5</scala.version>
+    </properties>
     <build>
         <plugins>
             <plugin>
@@ -55,6 +58,8 @@
                         <jvmArg>-Xms64m</jvmArg>
                         <jvmArg>-Xmx1024m</jvmArg>
                     </jvmArgs>
+                    <scalaVersion>${scala.version}</scalaVersion>
+                    <recompileMode>incremental</recompileMode>
                 </configuration>
             </plugin>
         </plugins>
