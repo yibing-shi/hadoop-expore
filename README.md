@@ -1,3 +1,3 @@
 # hadoop-explore
 
-Yibing's test projects
+This project contains examples of working in Hadoop ecosystem.
