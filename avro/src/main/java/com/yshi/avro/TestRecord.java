@@ -6,9 +6,6 @@
 package com.yshi.avro;
 
 import org.apache.avro.specific.SpecificData;
-import org.apache.avro.message.BinaryMessageEncoder;
-import org.apache.avro.message.BinaryMessageDecoder;
-import org.apache.avro.message.SchemaStore;
 
 @SuppressWarnings("all")
 @org.apache.avro.specific.AvroGenerated
@@ -16,41 +13,6 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
   private static final long serialVersionUID = -6508768456554304163L;
   public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"TestRecord\",\"namespace\":\"com.yshi.avro\",\"fields\":[{\"name\":\"recordId\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"boolField\",\"type\":\"boolean\",\"default\":true},{\"name\":\"longField\",\"type\":\"long\",\"default\":-1},{\"name\":\"intField\",\"type\":\"int\",\"default\":1},{\"name\":\"floatField\",\"type\":\"float\",\"default\":1.1},{\"name\":\"doubleField\",\"type\":\"double\",\"default\":2.2},{\"name\":\"bytesField\",\"type\":\"bytes\",\"default\":\"\\u0001\\u0002\\u0003\"},{\"name\":\"dateField\",\"type\":{\"type\":\"int\",\"logicalType\":\"date\"},\"default\":16801},{\"name\":\"timeField\",\"type\":{\"type\":\"int\",\"logicalType\":\"time-millis\"},\"default\":46800000},{\"name\":\"tsField\",\"type\":{\"type\":\"long\",\"logicalType\":\"timestamp-millis\"},\"default\":1451606400000},{\"name\":\"decField\",\"type\":{\"type\":\"bytes\",\"logicalType\":\"decimal\",\"precision\":7,\"scale\":2},\"default\":\"09\"},{\"name\":\"intArrayField\",\"type\":{\"type\":\"array\",\"items\":\"int\"}},{\"name\":\"dateArrayField\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"int\",\"logicalType\":\"date\"}}}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
-
-  private static SpecificData MODEL$ = new SpecificData();
-
-  private static final BinaryMessageEncoder<TestRecord> ENCODER =
-      new BinaryMessageEncoder<TestRecord>(MODEL$, SCHEMA$);
-
-  private static final BinaryMessageDecoder<TestRecord> DECODER =
-      new BinaryMessageDecoder<TestRecord>(MODEL$, SCHEMA$);
-
-  /**
-   * Return the BinaryMessageDecoder instance used by this class.
-   */
-  public static BinaryMessageDecoder<TestRecord> getDecoder() {
-    return DECODER;
-  }
-
-  /**
-   * Create a new BinaryMessageDecoder instance for this class that uses the specified {@link SchemaStore}.
-   * @param resolver a {@link SchemaStore} used to find schemas by fingerprint
-   */
-  public static BinaryMessageDecoder<TestRecord> createDecoder(SchemaStore resolver) {
-    return new BinaryMessageDecoder<TestRecord>(MODEL$, SCHEMA$, resolver);
-  }
-
-  /** Serializes this TestRecord to a ByteBuffer. */
-  public java.nio.ByteBuffer toByteBuffer() throws java.io.IOException {
-    return ENCODER.encode(this);
-  }
-
-  /** Deserializes a TestRecord from a ByteBuffer. */
-  public static TestRecord fromByteBuffer(
-      java.nio.ByteBuffer b) throws java.io.IOException {
-    return DECODER.decode(b);
-  }
-
   @Deprecated public java.lang.String recordId;
   @Deprecated public boolean boolField;
   @Deprecated public long longField;
@@ -61,7 +23,7 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
   @Deprecated public org.joda.time.LocalDate dateField;
   @Deprecated public org.joda.time.LocalTime timeField;
   @Deprecated public org.joda.time.DateTime tsField;
-  @Deprecated public java.math.BigDecimal decField;
+  @Deprecated public java.nio.ByteBuffer decField;
   @Deprecated public java.util.List<java.lang.Integer> intArrayField;
   @Deprecated public java.util.List<org.joda.time.LocalDate> dateArrayField;
 
@@ -88,7 +50,7 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
    * @param intArrayField The new value for intArrayField
    * @param dateArrayField The new value for dateArrayField
    */
-  public TestRecord(java.lang.String recordId, java.lang.Boolean boolField, java.lang.Long longField, java.lang.Integer intField, java.lang.Float floatField, java.lang.Double doubleField, java.nio.ByteBuffer bytesField, org.joda.time.LocalDate dateField, org.joda.time.LocalTime timeField, org.joda.time.DateTime tsField, java.math.BigDecimal decField, java.util.List<java.lang.Integer> intArrayField, java.util.List<org.joda.time.LocalDate> dateArrayField) {
+  public TestRecord(java.lang.String recordId, java.lang.Boolean boolField, java.lang.Long longField, java.lang.Integer intField, java.lang.Float floatField, java.lang.Double doubleField, java.nio.ByteBuffer bytesField, org.joda.time.LocalDate dateField, org.joda.time.LocalTime timeField, org.joda.time.DateTime tsField, java.nio.ByteBuffer decField, java.util.List<java.lang.Integer> intArrayField, java.util.List<org.joda.time.LocalDate> dateArrayField) {
     this.recordId = recordId;
     this.boolField = boolField;
     this.longField = longField;
@@ -128,9 +90,8 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
   protected static final org.apache.avro.data.TimeConversions.DateConversion DATE_CONVERSION = new org.apache.avro.data.TimeConversions.DateConversion();
   protected static final org.apache.avro.data.TimeConversions.TimeConversion TIME_CONVERSION = new org.apache.avro.data.TimeConversions.TimeConversion();
   protected static final org.apache.avro.data.TimeConversions.TimestampConversion TIMESTAMP_CONVERSION = new org.apache.avro.data.TimeConversions.TimestampConversion();
-  protected static final org.apache.avro.Conversions.DecimalConversion DECIMAL_CONVERSION = new org.apache.avro.Conversions.DecimalConversion();
 
-  private static final org.apache.avro.Conversion<?>[] conversions =
+  private final org.apache.avro.Conversion<?>[] conversions =
       new org.apache.avro.Conversion<?>[] {
       null,
       null,
@@ -142,7 +103,7 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
       DATE_CONVERSION,
       TIME_CONVERSION,
       TIMESTAMP_CONVERSION,
-      DECIMAL_CONVERSION,
+      null,
       null,
       null,
       null
@@ -167,7 +128,7 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
     case 7: dateField = (org.joda.time.LocalDate)value$; break;
     case 8: timeField = (org.joda.time.LocalTime)value$; break;
     case 9: tsField = (org.joda.time.DateTime)value$; break;
-    case 10: decField = (java.math.BigDecimal)value$; break;
+    case 10: decField = (java.nio.ByteBuffer)value$; break;
     case 11: intArrayField = (java.util.List<java.lang.Integer>)value$; break;
     case 12: dateArrayField = (java.util.List<org.joda.time.LocalDate>)value$; break;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
@@ -338,7 +299,7 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
    * Gets the value of the 'decField' field.
    * @return The value of the 'decField' field.
    */
-  public java.math.BigDecimal getDecField() {
+  public java.nio.ByteBuffer getDecField() {
     return decField;
   }
 
@@ -346,7 +307,7 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
    * Sets the value of the 'decField' field.
    * @param value the value to set.
    */
-  public void setDecField(java.math.BigDecimal value) {
+  public void setDecField(java.nio.ByteBuffer value) {
     this.decField = value;
   }
 
@@ -424,7 +385,7 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
     private org.joda.time.LocalDate dateField;
     private org.joda.time.LocalTime timeField;
     private org.joda.time.DateTime tsField;
-    private java.math.BigDecimal decField;
+    private java.nio.ByteBuffer decField;
     private java.util.List<java.lang.Integer> intArrayField;
     private java.util.List<org.joda.time.LocalDate> dateArrayField;
 
@@ -939,7 +900,7 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
       * Gets the value of the 'decField' field.
       * @return The value.
       */
-    public java.math.BigDecimal getDecField() {
+    public java.nio.ByteBuffer getDecField() {
       return decField;
     }
 
@@ -948,7 +909,7 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
       * @param value The value of 'decField'.
       * @return This builder.
       */
-    public com.yshi.avro.TestRecord.Builder setDecField(java.math.BigDecimal value) {
+    public com.yshi.avro.TestRecord.Builder setDecField(java.nio.ByteBuffer value) {
       validate(fields()[10], value);
       this.decField = value;
       fieldSetFlags()[10] = true;
@@ -1053,42 +1014,39 @@ public class TestRecord extends org.apache.avro.specific.SpecificRecordBase impl
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public TestRecord build() {
       try {
         TestRecord record = new TestRecord();
-        record.recordId = fieldSetFlags()[0] ? this.recordId : (java.lang.String) defaultValue(fields()[0], record.getConversion(0));
-        record.boolField = fieldSetFlags()[1] ? this.boolField : (java.lang.Boolean) defaultValue(fields()[1], record.getConversion(1));
-        record.longField = fieldSetFlags()[2] ? this.longField : (java.lang.Long) defaultValue(fields()[2], record.getConversion(2));
-        record.intField = fieldSetFlags()[3] ? this.intField : (java.lang.Integer) defaultValue(fields()[3], record.getConversion(3));
-        record.floatField = fieldSetFlags()[4] ? this.floatField : (java.lang.Float) defaultValue(fields()[4], record.getConversion(4));
-        record.doubleField = fieldSetFlags()[5] ? this.doubleField : (java.lang.Double) defaultValue(fields()[5], record.getConversion(5));
-        record.bytesField = fieldSetFlags()[6] ? this.bytesField : (java.nio.ByteBuffer) defaultValue(fields()[6], record.getConversion(6));
-        record.dateField = fieldSetFlags()[7] ? this.dateField : (org.joda.time.LocalDate) defaultValue(fields()[7], record.getConversion(7));
-        record.timeField = fieldSetFlags()[8] ? this.timeField : (org.joda.time.LocalTime) defaultValue(fields()[8], record.getConversion(8));
-        record.tsField = fieldSetFlags()[9] ? this.tsField : (org.joda.time.DateTime) defaultValue(fields()[9], record.getConversion(9));
-        record.decField = fieldSetFlags()[10] ? this.decField : (java.math.BigDecimal) defaultValue(fields()[10], record.getConversion(10));
-        record.intArrayField = fieldSetFlags()[11] ? this.intArrayField : (java.util.List<java.lang.Integer>) defaultValue(fields()[11], record.getConversion(11));
-        record.dateArrayField = fieldSetFlags()[12] ? this.dateArrayField : (java.util.List<org.joda.time.LocalDate>) defaultValue(fields()[12], record.getConversion(12));
+        record.recordId = fieldSetFlags()[0] ? this.recordId : (java.lang.String) defaultValue(fields()[0]);
+        record.boolField = fieldSetFlags()[1] ? this.boolField : (java.lang.Boolean) defaultValue(fields()[1]);
+        record.longField = fieldSetFlags()[2] ? this.longField : (java.lang.Long) defaultValue(fields()[2]);
+        record.intField = fieldSetFlags()[3] ? this.intField : (java.lang.Integer) defaultValue(fields()[3]);
+        record.floatField = fieldSetFlags()[4] ? this.floatField : (java.lang.Float) defaultValue(fields()[4]);
+        record.doubleField = fieldSetFlags()[5] ? this.doubleField : (java.lang.Double) defaultValue(fields()[5]);
+        record.bytesField = fieldSetFlags()[6] ? this.bytesField : (java.nio.ByteBuffer) defaultValue(fields()[6]);
+        record.dateField = fieldSetFlags()[7] ? this.dateField : (org.joda.time.LocalDate) defaultValue(fields()[7]);
+        record.timeField = fieldSetFlags()[8] ? this.timeField : (org.joda.time.LocalTime) defaultValue(fields()[8]);
+        record.tsField = fieldSetFlags()[9] ? this.tsField : (org.joda.time.DateTime) defaultValue(fields()[9]);
+        record.decField = fieldSetFlags()[10] ? this.decField : (java.nio.ByteBuffer) defaultValue(fields()[10]);
+        record.intArrayField = fieldSetFlags()[11] ? this.intArrayField : (java.util.List<java.lang.Integer>) defaultValue(fields()[11]);
+        record.dateArrayField = fieldSetFlags()[12] ? this.dateArrayField : (java.util.List<org.joda.time.LocalDate>) defaultValue(fields()[12]);
         return record;
-      } catch (java.lang.Exception e) {
+      } catch (Exception e) {
         throw new org.apache.avro.AvroRuntimeException(e);
       }
     }
   }
 
-  @SuppressWarnings("unchecked")
-  private static final org.apache.avro.io.DatumWriter<TestRecord>
-    WRITER$ = (org.apache.avro.io.DatumWriter<TestRecord>)MODEL$.createDatumWriter(SCHEMA$);
+  private static final org.apache.avro.io.DatumWriter
+    WRITER$ = new org.apache.avro.specific.SpecificDatumWriter(SCHEMA$);
 
   @Override public void writeExternal(java.io.ObjectOutput out)
     throws java.io.IOException {
     WRITER$.write(this, SpecificData.getEncoder(out));
   }
 
-  @SuppressWarnings("unchecked")
-  private static final org.apache.avro.io.DatumReader<TestRecord>
-    READER$ = (org.apache.avro.io.DatumReader<TestRecord>)MODEL$.createDatumReader(SCHEMA$);
+  private static final org.apache.avro.io.DatumReader
+    READER$ = new org.apache.avro.specific.SpecificDatumReader(SCHEMA$);
 
   @Override public void readExternal(java.io.ObjectInput in)
     throws java.io.IOException {

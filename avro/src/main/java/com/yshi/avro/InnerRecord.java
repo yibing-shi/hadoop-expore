@@ -6,9 +6,6 @@
 package com.yshi.avro;
 
 import org.apache.avro.specific.SpecificData;
-import org.apache.avro.message.BinaryMessageEncoder;
-import org.apache.avro.message.BinaryMessageDecoder;
-import org.apache.avro.message.SchemaStore;
 
 @SuppressWarnings("all")
 @org.apache.avro.specific.AvroGenerated
@@ -16,41 +13,6 @@ public class InnerRecord extends org.apache.avro.specific.SpecificRecordBase imp
   private static final long serialVersionUID = -5989862320374407439L;
   public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"InnerRecord\",\"namespace\":\"com.yshi.avro\",\"fields\":[{\"name\":\"desc\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"value\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
-
-  private static SpecificData MODEL$ = new SpecificData();
-
-  private static final BinaryMessageEncoder<InnerRecord> ENCODER =
-      new BinaryMessageEncoder<InnerRecord>(MODEL$, SCHEMA$);
-
-  private static final BinaryMessageDecoder<InnerRecord> DECODER =
-      new BinaryMessageDecoder<InnerRecord>(MODEL$, SCHEMA$);
-
-  /**
-   * Return the BinaryMessageDecoder instance used by this class.
-   */
-  public static BinaryMessageDecoder<InnerRecord> getDecoder() {
-    return DECODER;
-  }
-
-  /**
-   * Create a new BinaryMessageDecoder instance for this class that uses the specified {@link SchemaStore}.
-   * @param resolver a {@link SchemaStore} used to find schemas by fingerprint
-   */
-  public static BinaryMessageDecoder<InnerRecord> createDecoder(SchemaStore resolver) {
-    return new BinaryMessageDecoder<InnerRecord>(MODEL$, SCHEMA$, resolver);
-  }
-
-  /** Serializes this InnerRecord to a ByteBuffer. */
-  public java.nio.ByteBuffer toByteBuffer() throws java.io.IOException {
-    return ENCODER.encode(this);
-  }
-
-  /** Deserializes a InnerRecord from a ByteBuffer. */
-  public static InnerRecord fromByteBuffer(
-      java.nio.ByteBuffer b) throws java.io.IOException {
-    return DECODER.decode(b);
-  }
-
   @Deprecated public java.lang.String desc;
   @Deprecated public java.lang.String value;
 
@@ -274,31 +236,28 @@ public class InnerRecord extends org.apache.avro.specific.SpecificRecordBase imp
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public InnerRecord build() {
       try {
         InnerRecord record = new InnerRecord();
         record.desc = fieldSetFlags()[0] ? this.desc : (java.lang.String) defaultValue(fields()[0]);
         record.value = fieldSetFlags()[1] ? this.value : (java.lang.String) defaultValue(fields()[1]);
         return record;
-      } catch (java.lang.Exception e) {
+      } catch (Exception e) {
         throw new org.apache.avro.AvroRuntimeException(e);
       }
     }
   }
 
-  @SuppressWarnings("unchecked")
-  private static final org.apache.avro.io.DatumWriter<InnerRecord>
-    WRITER$ = (org.apache.avro.io.DatumWriter<InnerRecord>)MODEL$.createDatumWriter(SCHEMA$);
+  private static final org.apache.avro.io.DatumWriter
+    WRITER$ = new org.apache.avro.specific.SpecificDatumWriter(SCHEMA$);
 
   @Override public void writeExternal(java.io.ObjectOutput out)
     throws java.io.IOException {
     WRITER$.write(this, SpecificData.getEncoder(out));
   }
 
-  @SuppressWarnings("unchecked")
-  private static final org.apache.avro.io.DatumReader<InnerRecord>
-    READER$ = (org.apache.avro.io.DatumReader<InnerRecord>)MODEL$.createDatumReader(SCHEMA$);
+  private static final org.apache.avro.io.DatumReader
+    READER$ = new org.apache.avro.specific.SpecificDatumReader(SCHEMA$);
 
   @Override public void readExternal(java.io.ObjectInput in)
     throws java.io.IOException {

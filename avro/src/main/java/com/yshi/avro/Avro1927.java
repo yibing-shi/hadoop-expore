@@ -6,9 +6,6 @@
 package com.yshi.avro;
 
 import org.apache.avro.specific.SpecificData;
-import org.apache.avro.message.BinaryMessageEncoder;
-import org.apache.avro.message.BinaryMessageDecoder;
-import org.apache.avro.message.SchemaStore;
 
 @SuppressWarnings("all")
 @org.apache.avro.specific.AvroGenerated
@@ -16,41 +13,6 @@ public class Avro1927 extends org.apache.avro.specific.SpecificRecordBase implem
   private static final long serialVersionUID = -3738653312296612799L;
   public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Avro1927\",\"namespace\":\"com.yshi.avro\",\"fields\":[{\"name\":\"myField\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"},\"default\":\"\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
-
-  private static SpecificData MODEL$ = new SpecificData();
-
-  private static final BinaryMessageEncoder<Avro1927> ENCODER =
-      new BinaryMessageEncoder<Avro1927>(MODEL$, SCHEMA$);
-
-  private static final BinaryMessageDecoder<Avro1927> DECODER =
-      new BinaryMessageDecoder<Avro1927>(MODEL$, SCHEMA$);
-
-  /**
-   * Return the BinaryMessageDecoder instance used by this class.
-   */
-  public static BinaryMessageDecoder<Avro1927> getDecoder() {
-    return DECODER;
-  }
-
-  /**
-   * Create a new BinaryMessageDecoder instance for this class that uses the specified {@link SchemaStore}.
-   * @param resolver a {@link SchemaStore} used to find schemas by fingerprint
-   */
-  public static BinaryMessageDecoder<Avro1927> createDecoder(SchemaStore resolver) {
-    return new BinaryMessageDecoder<Avro1927>(MODEL$, SCHEMA$, resolver);
-  }
-
-  /** Serializes this Avro1927 to a ByteBuffer. */
-  public java.nio.ByteBuffer toByteBuffer() throws java.io.IOException {
-    return ENCODER.encode(this);
-  }
-
-  /** Deserializes a Avro1927 from a ByteBuffer. */
-  public static Avro1927 fromByteBuffer(
-      java.nio.ByteBuffer b) throws java.io.IOException {
-    return DECODER.decode(b);
-  }
-
   @Deprecated public java.lang.String myField;
 
   /**
@@ -205,30 +167,27 @@ public class Avro1927 extends org.apache.avro.specific.SpecificRecordBase implem
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public Avro1927 build() {
       try {
         Avro1927 record = new Avro1927();
         record.myField = fieldSetFlags()[0] ? this.myField : (java.lang.String) defaultValue(fields()[0]);
         return record;
-      } catch (java.lang.Exception e) {
+      } catch (Exception e) {
         throw new org.apache.avro.AvroRuntimeException(e);
       }
     }
   }
 
-  @SuppressWarnings("unchecked")
-  private static final org.apache.avro.io.DatumWriter<Avro1927>
-    WRITER$ = (org.apache.avro.io.DatumWriter<Avro1927>)MODEL$.createDatumWriter(SCHEMA$);
+  private static final org.apache.avro.io.DatumWriter
+    WRITER$ = new org.apache.avro.specific.SpecificDatumWriter(SCHEMA$);
 
   @Override public void writeExternal(java.io.ObjectOutput out)
     throws java.io.IOException {
     WRITER$.write(this, SpecificData.getEncoder(out));
   }
 
-  @SuppressWarnings("unchecked")
-  private static final org.apache.avro.io.DatumReader<Avro1927>
-    READER$ = (org.apache.avro.io.DatumReader<Avro1927>)MODEL$.createDatumReader(SCHEMA$);
+  private static final org.apache.avro.io.DatumReader
+    READER$ = new org.apache.avro.specific.SpecificDatumReader(SCHEMA$);
 
   @Override public void readExternal(java.io.ObjectInput in)
     throws java.io.IOException {

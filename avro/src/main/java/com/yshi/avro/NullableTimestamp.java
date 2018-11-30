@@ -6,9 +6,6 @@
 package com.yshi.avro;
 
 import org.apache.avro.specific.SpecificData;
-import org.apache.avro.message.BinaryMessageEncoder;
-import org.apache.avro.message.BinaryMessageDecoder;
-import org.apache.avro.message.SchemaStore;
 
 @SuppressWarnings("all")
 @org.apache.avro.specific.AvroGenerated
@@ -16,41 +13,6 @@ public class NullableTimestamp extends org.apache.avro.specific.SpecificRecordBa
   private static final long serialVersionUID = -4809398507065150473L;
   public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"NullableTimestamp\",\"namespace\":\"com.yshi.avro\",\"fields\":[{\"name\":\"first\",\"type\":[\"null\",{\"type\":\"long\",\"logicalType\":\"timestamp-millis\"}]}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
-
-  private static SpecificData MODEL$ = new SpecificData();
-
-  private static final BinaryMessageEncoder<NullableTimestamp> ENCODER =
-      new BinaryMessageEncoder<NullableTimestamp>(MODEL$, SCHEMA$);
-
-  private static final BinaryMessageDecoder<NullableTimestamp> DECODER =
-      new BinaryMessageDecoder<NullableTimestamp>(MODEL$, SCHEMA$);
-
-  /**
-   * Return the BinaryMessageDecoder instance used by this class.
-   */
-  public static BinaryMessageDecoder<NullableTimestamp> getDecoder() {
-    return DECODER;
-  }
-
-  /**
-   * Create a new BinaryMessageDecoder instance for this class that uses the specified {@link SchemaStore}.
-   * @param resolver a {@link SchemaStore} used to find schemas by fingerprint
-   */
-  public static BinaryMessageDecoder<NullableTimestamp> createDecoder(SchemaStore resolver) {
-    return new BinaryMessageDecoder<NullableTimestamp>(MODEL$, SCHEMA$, resolver);
-  }
-
-  /** Serializes this NullableTimestamp to a ByteBuffer. */
-  public java.nio.ByteBuffer toByteBuffer() throws java.io.IOException {
-    return ENCODER.encode(this);
-  }
-
-  /** Deserializes a NullableTimestamp from a ByteBuffer. */
-  public static NullableTimestamp fromByteBuffer(
-      java.nio.ByteBuffer b) throws java.io.IOException {
-    return DECODER.decode(b);
-  }
-
   @Deprecated public org.joda.time.DateTime first;
 
   /**
@@ -205,30 +167,27 @@ public class NullableTimestamp extends org.apache.avro.specific.SpecificRecordBa
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public NullableTimestamp build() {
       try {
         NullableTimestamp record = new NullableTimestamp();
         record.first = fieldSetFlags()[0] ? this.first : (org.joda.time.DateTime) defaultValue(fields()[0]);
         return record;
-      } catch (java.lang.Exception e) {
+      } catch (Exception e) {
         throw new org.apache.avro.AvroRuntimeException(e);
       }
     }
   }
 
-  @SuppressWarnings("unchecked")
-  private static final org.apache.avro.io.DatumWriter<NullableTimestamp>
-    WRITER$ = (org.apache.avro.io.DatumWriter<NullableTimestamp>)MODEL$.createDatumWriter(SCHEMA$);
+  private static final org.apache.avro.io.DatumWriter
+    WRITER$ = new org.apache.avro.specific.SpecificDatumWriter(SCHEMA$);
 
   @Override public void writeExternal(java.io.ObjectOutput out)
     throws java.io.IOException {
     WRITER$.write(this, SpecificData.getEncoder(out));
   }
 
-  @SuppressWarnings("unchecked")
-  private static final org.apache.avro.io.DatumReader<NullableTimestamp>
-    READER$ = (org.apache.avro.io.DatumReader<NullableTimestamp>)MODEL$.createDatumReader(SCHEMA$);
+  private static final org.apache.avro.io.DatumReader
+    READER$ = new org.apache.avro.specific.SpecificDatumReader(SCHEMA$);
 
   @Override public void readExternal(java.io.ObjectInput in)
     throws java.io.IOException {
